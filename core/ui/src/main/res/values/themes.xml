@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.V26.Theme.ComposeTwitterClone" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Base.Theme.ComposeTwitterClone" parent="Base.V26.Theme.ComposeTwitterClone" />
+
+    <style name="Theme.ComposeTwitterClone" parent="Base.Theme.ComposeTwitterClone" />
+
+</resources>

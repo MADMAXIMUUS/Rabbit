@@ -1,0 +1,36 @@
+ext.versions = [
+        navigation : "2.5.3",
+        compose    : '1.4.1',
+        composeTest: "1.4.1"
+]
+
+ext.libs = [
+        coreKtx               : "androidx.core:core-ktx:1.10.0",
+        navigation            : "androidx.navigation:navigation-compose:${versions.navigation}",
+        lifecycleRantimeKtx   : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1",
+        activityCompose       : "androidx.activity:activity-compose:1.7.0",
+        composeUi             : "androidx.compose.ui:ui:${versions.compose}",
+        composePreview        : "androidx.compose.ui:ui-tooling-preview:${versions.compose}",
+        material3             : "androidx.compose.material3:material3:1.1.0-beta02",
+
+        uiTestJUnit           : "androidx.compose.ui:ui-test-junit4:${versions.composeTest}",
+        uiTooling             : "androidx.compose.ui:ui-tooling:${versions.composeTest}",
+        uiTestManifest        : "androidx.compose.ui:ui-test-manifest:${versions.composeTest}",
+
+        acomponistUiController: "com.google.accompanist:accompanist-systemuicontroller:0.27.0",
+
+        //Splash
+        splash                : "androidx.core:core-splashscreen:1.0.0",
+
+        //Dagger - Hilt
+        hilt                  : "com.google.dagger:hilt-android:2.44",
+        hiltAndroidCompiler   : "com.google.dagger:hilt-android-compiler:2.44",
+        hiltCompiler          : "androidx.hilt:hilt-compiler:1.0.0",
+        hiltNavigation        : "androidx.hilt:hilt-navigation-compose:1.0.0",
+
+        //Test
+        jUnit                 : "junit:junit:4.13.2",
+        testExt               : "androidx.test.ext:junit:1.1.5",
+        espresso              : "androidx.test.espresso:espresso-core:3.5.1"
+
+]

@@ -16,3 +16,4 @@ rootProject.name = "ComposeTwitterClone"
 include ':app'
 include ':core:ui'
 include ':feature:registry'
+include ':feature:feed'

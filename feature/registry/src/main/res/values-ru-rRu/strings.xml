@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="have_account_hint">Уже есть аккаунт? </string>
+    <string name="have_account_hint">Уже есть аккаунт? Войдите</string>
+    <string name="welcome_message">Узнайте, что происходит в мире прямо сейчас.</string>
+    <string name="or">или</string>
+    <string name="sign_in_with_google">Войдите с Google</string>
+    <string name="create_account">Зарегистрируйтесь</string>
+    <string name="privacy_message">Регистрируясь вы принимаете наши Условия, Политику конфиденциальности и использование файлов Cookie</string>
 
 </resources>

@@ -1,40 +1,41 @@
-package ru.madmax.feature.registry
+package ru.madmax.feature.registry.ui.welcome
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ru.madmax.core.ui.components.TButton
 import ru.madmax.core.ui.components.TOutlineButton
+import ru.madmax.core.ui.components.TTopAppBar
+import ru.madmax.core.ui.theme.ComposeTwitterCloneTheme
+import ru.madmax.feature.registry.R
+import ru.madmax.feature.registry.navigation.navigateToMainSignUp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(
-                WindowInsets.systemBars
-                    .only(WindowInsetsSides.Top)
-                    .asPaddingValues()
-            )
     ) {
-        Icon(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp),
-            imageVector = ImageVector
-                .vectorResource(id = ru.madmax.core.ui.R.drawable.app_logo_splash),
-            tint = MaterialTheme.colorScheme.primary,
-            contentDescription = ""
+        TTopAppBar(
+            title = {
+                Icon(
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(24.dp),
+                    painter = painterResource(id = ru.madmax.core.ui.R.drawable.app_logo),
+                    tint = MaterialTheme.colorScheme.primary,
+                    contentDescription = ""
+                )
+            },
         )
         Spacer(
             modifier = Modifier
@@ -43,7 +44,7 @@ fun WelcomeScreen() {
         Text(
             modifier = Modifier
                 .padding(horizontal = 40.dp),
-            text = "See what's happening in the world right now.",
+            text = stringResource(R.string.welcome_message),
             style = MaterialTheme.typography.displaySmall,
             fontWeight = FontWeight.Bold
         )
@@ -59,12 +60,11 @@ fun WelcomeScreen() {
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),
             text = {
-                Text(text = "Sign in with Google")
+                Text(text = stringResource(R.string.sign_in_with_google))
             },
             leadingIcon = {
                 Icon(
-                    imageVector = ImageVector
-                        .vectorResource(id = R.drawable.ic_google),
+                    painter = painterResource(id = R.drawable.ic_google),
                     contentDescription = ""
                 )
             }
@@ -80,7 +80,10 @@ fun WelcomeScreen() {
                     .weight(0.5f)
                     .height(2.dp)
             )
-            Text(text = "or", modifier = Modifier.padding(horizontal = 10.dp))
+            Text(
+                text = stringResource(R.string.or),
+                modifier = Modifier.padding(horizontal = 10.dp)
+            )
             Divider(
                 modifier = Modifier
                     .weight(0.5f)
@@ -89,13 +92,13 @@ fun WelcomeScreen() {
         }
         TButton(
             onClick = {
-
+                navController.navigateToMainSignUp()
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp)
         ) {
-            Text(text = "Create account")
+            Text(text = stringResource(R.string.create_account))
         }
         Spacer(
             modifier = Modifier
@@ -104,7 +107,7 @@ fun WelcomeScreen() {
         Text(
             modifier = Modifier
                 .padding(horizontal = 30.dp),
-            text = "By signing up, you agree to our Terms, Privacy Policy and Cookie Use",
+            text = stringResource(R.string.privacy_message),
             style = MaterialTheme.typography.bodySmall
         )
         Spacer(

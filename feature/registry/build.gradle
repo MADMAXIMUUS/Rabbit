@@ -44,6 +44,7 @@ dependencies {
     implementation libs.material3
 
     implementation project(":core:ui")
+    implementation libs.composeNavigation
 
     api libs.composeFoundation
     api libs.composeFoundationLayout

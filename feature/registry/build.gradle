@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -43,8 +45,18 @@ dependencies {
     implementation libs.composePreview
     implementation libs.material3
 
+    implementation libs.lifecycleRuntimeKtx
+
     implementation project(":core:ui")
     implementation libs.composeNavigation
+
+    implementation libs.composeDialogsCore
+    implementation libs.composeDialogsCalendar
+
+    implementation libs.hilt
+    kapt libs.hiltAndroidCompiler
+    kapt libs.hiltCompiler
+    implementation libs.hiltNavigation
 
     api libs.composeFoundation
     api libs.composeFoundationLayout

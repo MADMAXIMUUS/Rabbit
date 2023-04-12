@@ -33,12 +33,12 @@ private val DarkColorScheme = darkColorScheme(
     background = Grey10,
     onBackground = Green90,
     surface = BlueGrey30,
-    onSurface = BlueGrey85,
+    onSurface = BlueGrey80,
     inverseSurface = Green90,
     inverseOnSurface = Grey10,
     surfaceVariant = BlueGrey30,
-    onSurfaceVariant = BlueGrey85,
-    outline = BlueGrey85,
+    onSurfaceVariant = BlueGrey80,
+    outline = BlueGrey80,
 )
 
 private val LightColorScheme = lightColorScheme(

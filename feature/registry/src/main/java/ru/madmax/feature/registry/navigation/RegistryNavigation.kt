@@ -5,19 +5,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import ru.madmax.feature.registry.ui.signUp.SignUpScreenMain
+import ru.madmax.feature.registry.navigation.RoutesPattern.CONFIRM_SIGN_UP_SCREEN_PATTERN
+import ru.madmax.feature.registry.ui.signUpMain.SignUpMainScreen
 import ru.madmax.feature.registry.ui.welcome.WelcomeScreen
 
 const val registryGraphRoutePattern = "registry_graph"
-private const val registryNavigationRoute = "registry_route"
-private const val mainSignUpNavigationRoute = "main_sign_up_route"
 
 fun NavController.navigateToRegistryGraph(navOptions: NavOptions? = null) {
-    this.navigate(registryNavigationRoute, navOptions)
-}
-
-internal fun NavController.navigateToMainSignUp(navOptions: NavOptions? = null) {
-    this.navigate(mainSignUpNavigationRoute, navOptions)
+    this.navigate(Routes.WELCOME_SCREEN, navOptions)
 }
 
 fun NavGraphBuilder.registryGraph(
@@ -25,13 +20,19 @@ fun NavGraphBuilder.registryGraph(
 ) {
     navigation(
         route = registryGraphRoutePattern,
-        startDestination = registryNavigationRoute,
+        startDestination = Routes.WELCOME_SCREEN,
     ) {
-        composable(route = registryNavigationRoute) {
+        composable(route = Routes.WELCOME_SCREEN) {
             WelcomeScreen(navController)
         }
-        composable(route = mainSignUpNavigationRoute) {
-            SignUpScreenMain()
+        composable(route = Routes.MAIN_SIGN_UP_SCREEN) {
+            SignUpMainScreen(navController)
+        }
+        composable(route = CONFIRM_SIGN_UP_SCREEN_PATTERN) {
+            val name = it.arguments?.getString("name")
+            val email = it.arguments?.getString("email")
+            val date = it.arguments?.getString("date")
+
         }
     }
 }

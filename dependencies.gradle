@@ -1,12 +1,13 @@
 ext.versions = [
         navigation : "2.5.3",
         compose    : '1.4.1',
-        composeTest: "1.4.1"
+        composeTest: "1.4.1",
+        dialogs    : "1.1.1",
 ]
 
 ext.libs = [
         coreKtx                : "androidx.core:core-ktx:1.10.0",
-        lifecycleRantimeKtx    : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1",
+        lifecycleRuntimeKtx    : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1",
         activityCompose        : "androidx.activity:activity-compose:1.7.0",
         material3              : "androidx.compose.material3:material3:1.1.0-beta02",
 
@@ -35,5 +36,9 @@ ext.libs = [
         //Test
         jUnit                  : "junit:junit:4.13.2",
         testExt                : "androidx.test.ext:junit:1.1.5",
-        espresso               : "androidx.test.espresso:espresso-core:3.5.1"
+        espresso               : "androidx.test.espresso:espresso-core:3.5.1",
+
+        //Date picker
+        composeDialogsCore  : "com.maxkeppeler.sheets-compose-dialogs:core:${versions.dialogs}",
+        composeDialogsCalendar  : "com.maxkeppeler.sheets-compose-dialogs:calendar:${versions.dialogs}",
 ]

@@ -7,5 +7,23 @@
     <string name="sign_in_with_google">Войдите с Google</string>
     <string name="create_account">Зарегистрируйтесь</string>
     <string name="privacy_message">Регистрируясь вы принимаете наши Условия, Политику конфиденциальности и использование файлов Cookie</string>
+    <string name="sign_up_message">By signing up, you agree to Terms of Service and Privacy Policy, including Cookie Use. Twitter may use your contact information, including your email address and phone number for purposes outlined secure and personalizing our services, including ads. Learn more. Others will be able to find you by email or phone number, when provided, unless you choose otherwise here.</string>
+
+    <string name="name_label">Имя</string>
+    <string name="email_label">Email</string>
+    <string name="date_label">Дата рождения</string>
+    <string name="next_button_label">Далее</string>
+
+    <string name="email_is_empty">Email не может быть пустым</string>
+    <string name="email_is_not_valid">Некорректный Email</string>
+
+    <string name="short_password">Пароль должен содержать как минимум 8 символов</string>
+    <string name="week_password">Пароль должен содержать хотя бы одну букву и цифру</string>
+
+    <string name="sign_up_main_title">Создать аккаунт</string>
+
+    <string name="name_empty">Имя не может быть пустям</string>
+
+    <string name="date_not_valid">Вам должно быть хотя бы 13 лет</string>
 
 </resources>

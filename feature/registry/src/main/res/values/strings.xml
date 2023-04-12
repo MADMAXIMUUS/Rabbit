@@ -7,4 +7,22 @@
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="create_account">Create account</string>
     <string name="privacy_message">By signing up, you agree to our Terms, Privacy Policy and Cookie Use</string>
+    <string name="sign_up_message">By signing up, you agree to Terms of Service and Privacy Policy, including Cookie Use. Twitter may use your contact information, including your email address and phone number for purposes outlined secure and personalizing our services, including ads. Learn more. Others will be able to find you by email or phone number, when provided, unless you choose otherwise here.</string>
+
+    <string name="sign_up_main_title">Create your account</string>
+    <string name="name_label">Name</string>
+    <string name="email_label">Email address</string>
+    <string name="date_label">Date of birth</string>
+    <string name="next_button_label">Next</string>
+
+    <string name="email_is_empty">Email can\'t be empty</string>
+    <string name="email_is_not_valid">Email is incorrect</string>
+
+    <string name="short_password">Password must contain at least 8 characters</string>
+    <string name="week_password">Password must contain at least one letter and number</string>
+
+    <string name="name_empty">Name can\' be empty</string>
+
+    <string name="date_not_valid">You must be at least 13 years old</string>
+
 </resources>

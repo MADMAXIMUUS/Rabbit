@@ -8,15 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ru.madmax.core.ui.components.TButton
 import ru.madmax.core.ui.components.TOutlineButton
 import ru.madmax.core.ui.components.TTopAppBar
-import ru.madmax.core.ui.theme.ComposeTwitterCloneTheme
 import ru.madmax.feature.registry.R
-import ru.madmax.feature.registry.navigation.navigateToMainSignUp
+import ru.madmax.feature.registry.navigation.Routes.MAIN_SIGN_UP_SCREEN
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -92,7 +90,7 @@ fun WelcomeScreen(navController: NavController) {
         }
         TButton(
             onClick = {
-                navController.navigateToMainSignUp()
+                navController.navigate(MAIN_SIGN_UP_SCREEN)
             },
             modifier = Modifier
                 .fillMaxWidth()

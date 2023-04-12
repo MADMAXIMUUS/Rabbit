@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import ru.madmax.feature.registry.R
+import ru.madmax.feature.registry.navigation.Routes
 import ru.madmax.feature.registry.util.ValidateEmail
 import toCalendarDate
 import java.time.LocalDate
@@ -72,6 +73,16 @@ class SignUpMainViewModel @Inject constructor(
                         currentState.dateValue.isNotEmpty()
             )
         }
+    }
+
+    fun createRoute(): String {
+        return "${Routes.CONFIRM_SIGN_UP_SCREEN}/${_uiState.value.nameValue}/${_uiState.value.emailValue}/${
+            _uiState.value.localDateValue.atStartOfDay(
+                ZoneId.systemDefault()
+            )
+                .toInstant()
+                .toEpochMilli()
+        }"
     }
 
 }

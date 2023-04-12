@@ -12,6 +12,7 @@
     <string name="name_label">Имя</string>
     <string name="email_label">Email</string>
     <string name="date_label">Дата рождения</string>
+    <string name="password_label">Пароль</string>
     <string name="next_button_label">Далее</string>
 
     <string name="email_is_empty">Email не может быть пустым</string>

@@ -235,7 +235,7 @@ fun SignUpMainScreen(
                 TButton(enabled = state.isButtonEnabled,
                     modifier = Modifier.padding(end = 10.dp),
                     onClick = {
-
+                        navController.navigate(viewModel.createRoute())
                         keyboardController?.hide()
                     }) {
                     Text(stringResource(ru.madmax.feature.registry.R.string.next_button_label))

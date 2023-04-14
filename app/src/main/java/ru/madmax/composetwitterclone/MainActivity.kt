@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import ru.madmax.composetwitterclone.ui.ComposeTwitterApp
-import ru.madmax.core.ui.theme.ComposeTwitterCloneTheme
+import ru.madmax.composetwitterclone.core.ui.theme.ComposeTwitterCloneTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

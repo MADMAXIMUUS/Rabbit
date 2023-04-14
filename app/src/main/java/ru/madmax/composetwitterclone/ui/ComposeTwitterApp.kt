@@ -4,8 +4,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
-import ru.madmax.feature.registry.navigation.registryGraph
-import ru.madmax.feature.registry.navigation.registryGraphRoutePattern
+import ru.madmax.composetwitterclone.feature.registry.navigation.registryGraph
+import ru.madmax.composetwitterclone.feature.registry.navigation.registryGraphRoutePattern
 
 @Composable
 fun ComposeTwitterApp(

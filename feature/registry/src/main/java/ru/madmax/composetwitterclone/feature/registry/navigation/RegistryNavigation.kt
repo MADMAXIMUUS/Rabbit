@@ -1,11 +1,14 @@
 package ru.madmax.composetwitterclone.feature.registry.navigation
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.SET_PROFILE_IMAGE_SCREEN
 import ru.madmax.composetwitterclone.feature.registry.navigation.RoutesPattern.CONFIRM_SIGN_UP_SCREEN_PATTERN
+import ru.madmax.composetwitterclone.feature.registry.ui.setProfilePicture.SetProfileImageScreen
 import ru.madmax.composetwitterclone.feature.registry.ui.signUpConfirm.SignUpConfirmScreen
 import ru.madmax.composetwitterclone.feature.registry.ui.signUpMain.SignUpMainScreen
 import ru.madmax.composetwitterclone.feature.registry.ui.welcome.WelcomeScreen
@@ -17,7 +20,8 @@ fun NavController.navigateToRegistryGraph(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.registryGraph(
-    navController: NavController
+    navController: NavController,
+    snackbarHostState: SnackbarHostState
 ) {
     navigation(
         route = registryGraphRoutePattern,
@@ -27,7 +31,7 @@ fun NavGraphBuilder.registryGraph(
             WelcomeScreen(navController)
         }
         composable(route = Routes.MAIN_SIGN_UP_SCREEN) {
-            SignUpMainScreen(navController)
+            SignUpMainScreen(navController, snackbarHostState)
         }
         composable(route = CONFIRM_SIGN_UP_SCREEN_PATTERN) {
             val name = it.arguments?.getString("name").toString()
@@ -37,8 +41,12 @@ fun NavGraphBuilder.registryGraph(
                 name = name,
                 email = email,
                 date = date,
-                navController = navController
+                navController = navController,
+                snackbarHostState
             )
+        }
+        composable(route = SET_PROFILE_IMAGE_SCREEN) {
+            SetProfileImageScreen()
         }
     }
 }

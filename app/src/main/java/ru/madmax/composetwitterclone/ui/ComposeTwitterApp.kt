@@ -22,7 +22,10 @@ fun ComposeTwitterApp(
             navController = appState.navController,
             startDestination = if (shouldShowWelcomeScreen) registryGraphRoutePattern else ""
         ) {
-            registryGraph(navController = appState.navController)
+            registryGraph(
+                navController = appState.navController,
+                snackbarHostState = appState.snackbarHostState
+            )
         }
     }
 }

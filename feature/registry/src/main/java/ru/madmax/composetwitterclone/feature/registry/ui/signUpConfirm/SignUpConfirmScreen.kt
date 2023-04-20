@@ -3,10 +3,15 @@ package ru.madmax.composetwitterclone.feature.registry.ui.signUpConfirm
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -16,24 +21,58 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import kotlinx.coroutines.flow.collectLatest
 import ru.madmax.composetwitterclone.core.ui.components.TButton
 import ru.madmax.composetwitterclone.core.ui.components.TProfileTextField
 import ru.madmax.composetwitterclone.core.ui.components.TProfileTextFieldTrailing
 import ru.madmax.composetwitterclone.core.ui.components.TTopAppBarNavigationOnly
+import ru.madmax.composetwitterclone.feature.registry.R
+import ru.madmax.composetwitterclone.util.UiAction
+import ru.madmax.composetwitterclone.util.asString
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun SignUpConfirmScreen(
     name: String,
     email: String,
     date: String,
     navController: NavController,
+    snackbarHostState: SnackbarHostState,
     viewModel: SignUpConfirmViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val context = LocalContext.current
+
     viewModel.updateNameValue(name)
     viewModel.updateEmailValue(email)
     viewModel.updateDateState(date)
+
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collectLatest { event ->
+            when (event) {
+                is UiAction.ShowSnackbar -> {
+                    keyboardController?.hide()
+                    snackbarHostState.showSnackbar(
+                        message = event.message.asString(context),
+                        duration = SnackbarDuration.Long
+                    )
+                }
+
+                is UiAction.Navigate -> {
+                    navController.navigate(event.route)
+                    keyboardController?.hide()
+                }
+
+                is UiAction.NavigateUp -> {
+                    navController.navigateUp()
+                }
+
+                else -> {}
+            }
+        }
+    }
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -55,7 +94,7 @@ fun SignUpConfirmScreen(
         Spacer(modifier = Modifier.weight(0.1f))
         Text(
             modifier = Modifier.padding(horizontal = 40.dp),
-            text = stringResource(ru.madmax.composetwitterclone.feature.registry.R.string.sign_up_main_title),
+            text = stringResource(R.string.sign_up_main_title),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold
         )
@@ -63,7 +102,7 @@ fun SignUpConfirmScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),
-            label = stringResource(ru.madmax.composetwitterclone.feature.registry.R.string.name_label),
+            label = stringResource(R.string.name_label),
             readOnly = true,
             value = state.nameValue,
             supportingText = {},
@@ -75,7 +114,7 @@ fun SignUpConfirmScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),
-            label = stringResource(ru.madmax.composetwitterclone.feature.registry.R.string.email_label),
+            label = stringResource(R.string.email_label),
             value = state.emailValue,
             readOnly = true,
             supportingText = {},
@@ -87,7 +126,7 @@ fun SignUpConfirmScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),
-            label = stringResource(ru.madmax.composetwitterclone.feature.registry.R.string.date_label),
+            label = stringResource(R.string.date_label),
             value = state.dateValue,
             readOnly = true,
             supportingText = {},
@@ -97,7 +136,7 @@ fun SignUpConfirmScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),
-            label = stringResource(ru.madmax.composetwitterclone.feature.registry.R.string.password_label),
+            label = stringResource(R.string.password_label),
             value = state.passwordValue,
             isError = state.isPasswordError,
             trailingIcon = {
@@ -113,24 +152,24 @@ fun SignUpConfirmScreen(
                     ) {
                         if (state.passwordShow) {
                             Icon(
-                                painterResource(id = ru.madmax.composetwitterclone.feature.registry.R.drawable.ic_visibility),
+                                painterResource(id = R.drawable.ic_visibility),
                                 contentDescription = ""
                             )
                         } else {
                             Icon(
-                                painterResource(id = ru.madmax.composetwitterclone.feature.registry.R.drawable.ic_visibility_off),
+                                painterResource(id = R.drawable.ic_visibility_off),
                                 contentDescription = ""
                             )
                         }
                     }
                     if (state.isPasswordError) {
                         Icon(
-                            painter = painterResource(id = ru.madmax.composetwitterclone.feature.registry.R.drawable.ic_error),
+                            painter = painterResource(id = R.drawable.ic_error),
                             contentDescription = ""
                         )
                     } else if (state.passwordValue.isNotEmpty()) {
                         Icon(
-                            painter = painterResource(id = ru.madmax.composetwitterclone.feature.registry.R.drawable.ic_check),
+                            painter = painterResource(id = R.drawable.ic_check),
                             contentDescription = ""
                         )
                     }
@@ -169,7 +208,7 @@ fun SignUpConfirmScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp),
             style = MaterialTheme.typography.bodySmall,
-            text = stringResource(id = ru.madmax.composetwitterclone.feature.registry.R.string.sign_up_message)
+            text = stringResource(id = R.string.sign_up_message)
         )
         Spacer(
             modifier = Modifier
@@ -179,16 +218,27 @@ fun SignUpConfirmScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp),
-            onClick = { },
+            onClick = {
+                viewModel.signUp()
+            },
             contentPadding = PaddingValues(
                 vertical = 15.dp
             )
         ) {
-            Text(
-                text = "Sign up",
-                style = MaterialTheme.typography.labelLarge,
-                fontSize = 16.sp
-            )
+            if (state.isLoading) {
+                CircularProgressIndicator(
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.size(20.dp),
+                    strokeWidth = 3.dp,
+                    strokeCap = StrokeCap.Round
+                )
+            } else {
+                Text(
+                    text = "Sign up",
+                    style = MaterialTheme.typography.labelLarge,
+                    fontSize = 16.sp
+                )
+            }
         }
         Spacer(
             modifier = Modifier

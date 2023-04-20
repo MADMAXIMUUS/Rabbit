@@ -11,4 +11,5 @@ data class SignUpConfirmScreenState(
     val passwordError: Int? = null,
     val isPasswordError: Boolean = false,
     val passwordShow: Boolean = false,
+    val isLoading: Boolean = false
 )

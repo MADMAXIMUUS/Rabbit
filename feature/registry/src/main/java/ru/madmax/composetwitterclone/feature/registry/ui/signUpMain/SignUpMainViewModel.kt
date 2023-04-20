@@ -1,13 +1,18 @@
 package ru.madmax.composetwitterclone.feature.registry.ui.signUpMain
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import ru.madmax.composetwitterclone.feature.registry.R
 import ru.madmax.composetwitterclone.feature.registry.navigation.Routes
 import ru.madmax.composetwitterclone.feature.registry.util.ValidateEmail
+import ru.madmax.composetwitterclone.util.UiAction
 import toCalendarDate
 import java.time.LocalDate
 import java.time.ZoneId
@@ -19,6 +24,9 @@ class SignUpMainViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(SignUpMainScreenState())
     val uiState = _uiState.asStateFlow()
+
+    private val _eventFlow = MutableSharedFlow<UiAction>()
+    val eventFlow = _eventFlow.asSharedFlow()
 
     fun updateNameValue(name: String) {
         if (name.length <= 50) {
@@ -75,14 +83,18 @@ class SignUpMainViewModel @Inject constructor(
         }
     }
 
-    fun createRoute(): String {
-        return "${Routes.CONFIRM_SIGN_UP_SCREEN}/${_uiState.value.nameValue}/${_uiState.value.emailValue}/${
-            _uiState.value.localDateValue.atStartOfDay(
-                ZoneId.systemDefault()
-            )
-                .toInstant()
-                .toEpochMilli()
-        }"
+    fun next() {
+        viewModelScope.launch {
+            val route =
+                "${Routes.CONFIRM_SIGN_UP_SCREEN}/${_uiState.value.nameValue}/${_uiState.value.emailValue}/${
+                    _uiState.value.localDateValue.atStartOfDay(
+                        ZoneId.systemDefault()
+                    )
+                        .toInstant()
+                        .toEpochMilli()
+                }"
+            _eventFlow.emit(UiAction.Navigate(route))
+        }
     }
 
 }

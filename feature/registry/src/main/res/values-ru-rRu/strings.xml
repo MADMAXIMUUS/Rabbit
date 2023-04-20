@@ -6,14 +6,15 @@
     <string name="or">или</string>
     <string name="sign_in_with_google">Войдите с Google</string>
     <string name="create_account">Зарегистрируйтесь</string>
-    <string name="privacy_message">Регистрируясь вы принимаете наши Условия, Политику конфиденциальности и использование файлов Cookie</string>
-    <string name="sign_up_message">By signing up, you agree to Terms of Service and Privacy Policy, including Cookie Use. Twitter may use your contact information, including your email address and phone number for purposes outlined secure and personalizing our services, including ads. Learn more. Others will be able to find you by email or phone number, when provided, unless you choose otherwise here.</string>
+    <string name="privacy_message">Регистрируясь, вы принимаете наши Условия, Политику конфиденциальности и использование файлов Cookie</string>
+    <string name="sign_up_message">Регистрируясь, вы соглашаетесь с Условиями обслуживания и Политикой конфиденциальности, включая использование файлов cookie. Твиттер может использовать вашу контактную информацию, включая ваш адрес электронной почты и номер телефона, в целях, описанных выше, для обеспечения безопасности и персонализации наших услуг, включая рекламу. Узнать больше. Другие смогут найти вас по электронной почте или номеру телефона, если они предоставлены, если вы не укажете здесь иное.</string>
 
     <string name="name_label">Имя</string>
     <string name="email_label">Email</string>
     <string name="date_label">Дата рождения</string>
     <string name="password_label">Пароль</string>
     <string name="next_button_label">Далее</string>
+    <string name="skip_button_label">Пропустить</string>
 
     <string name="email_is_empty">Email не может быть пустым</string>
     <string name="email_is_not_valid">Некорректный Email</string>

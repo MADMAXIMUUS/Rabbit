@@ -14,6 +14,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ComposeTwitterClone"
 include ':app'
+include ':data'
 include ':core:ui'
-include ':feature:registry'
+include ':core:util'
+include ':core:models'
 include ':feature:feed'
+include ':feature:registry'

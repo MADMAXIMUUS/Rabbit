@@ -13,8 +13,9 @@
     <string name="name_label">Name</string>
     <string name="email_label">Email address</string>
     <string name="date_label">Date of birth</string>
-    <string name="password_label">Date of birth</string>
+    <string name="password_label">Password</string>
     <string name="next_button_label">Next</string>
+    <string name="skip_button_label">Skip for now</string>
 
     <string name="email_is_empty">Email can\'t be empty</string>
     <string name="email_is_not_valid">Email is incorrect</string>

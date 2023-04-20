@@ -2,10 +2,25 @@ package ru.madmax.composetwitterclone.feature.registry.ui.signUpMain
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
+import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -14,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -27,20 +43,25 @@ import androidx.navigation.NavController
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
+import kotlinx.coroutines.flow.collectLatest
 import ru.madmax.composetwitterclone.core.ui.R
 import ru.madmax.composetwitterclone.core.ui.components.TButton
 import ru.madmax.composetwitterclone.core.ui.components.TProfileTextFieldTrailing
 import ru.madmax.composetwitterclone.core.ui.components.TTopAppBarNavigationOnly
+import ru.madmax.composetwitterclone.util.UiAction
+import ru.madmax.composetwitterclone.util.asString
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun SignUpMainScreen(
     navController: NavController,
+    snackbarHostState: SnackbarHostState,
     viewModel: SignUpMainViewModel = hiltViewModel()
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusRequester = remember { FocusRequester() }
     val state by viewModel.uiState.collectAsState()
+    val context = LocalContext.current
 
     val source = remember {
         MutableInteractionSource()
@@ -62,6 +83,31 @@ fun SignUpMainScreen(
             state.calendarState.hide()
         },
     )
+
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collectLatest { event ->
+            when (event) {
+                is UiAction.ShowSnackbar -> {
+                    keyboardController?.hide()
+                    snackbarHostState.showSnackbar(
+                        message = event.message.asString(context),
+                        duration = SnackbarDuration.Long
+                    )
+                }
+
+                is UiAction.Navigate -> {
+                    navController.navigate(event.route)
+                    keyboardController?.hide()
+                }
+
+                is UiAction.NavigateUp -> {
+                    navController.navigateUp()
+                }
+
+                else -> {}
+            }
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -235,7 +281,7 @@ fun SignUpMainScreen(
                 TButton(enabled = state.isButtonEnabled,
                     modifier = Modifier.padding(end = 10.dp),
                     onClick = {
-                        navController.navigate(viewModel.createRoute())
+                        viewModel.next()
                         keyboardController?.hide()
                     }) {
                     Text(stringResource(ru.madmax.composetwitterclone.feature.registry.R.string.next_button_label))

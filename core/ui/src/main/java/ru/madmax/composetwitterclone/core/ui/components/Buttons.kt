@@ -111,15 +111,14 @@ fun TTextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    colors: ButtonColors = ButtonDefaults.textButtonColors(),
     content: @Composable RowScope.() -> Unit,
 ) {
     TextButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        colors = ButtonDefaults.textButtonColors(
-            contentColor = MaterialTheme.colorScheme.onBackground,
-        ),
+        colors = colors,
         content = content,
     )
 }
@@ -130,12 +129,14 @@ fun TTextButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     text: @Composable () -> Unit,
+    colors: ButtonColors = ButtonDefaults.textButtonColors(),
     leadingIcon: @Composable (() -> Unit)? = null,
 ) {
     TTextButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
+        colors = colors
     ) {
         TButtonContent(
             text = text,

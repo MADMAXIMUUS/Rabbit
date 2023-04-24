@@ -81,6 +81,7 @@ fun ComposeTwitterCloneTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
+
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
@@ -90,7 +91,7 @@ fun ComposeTwitterCloneTheme(
             ?: throw Exception("Not in an activity - unable to get Window reference")
         SideEffect {
             currentWindow.statusBarColor = Color.Transparent.toArgb()
-            currentWindow.navigationBarColor = colorScheme.background.toArgb()
+            currentWindow.navigationBarColor = Color.Transparent.toArgb()
             WindowCompat.getInsetsController(currentWindow, view).isAppearanceLightStatusBars =
                 !darkTheme
         }

@@ -14,9 +14,7 @@ fun TTopAppBar(
     actionIcon: Painter,
     actionIconContentDescription: String?,
     modifier: Modifier = Modifier,
-    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-        containerColor = MaterialTheme.colorScheme.background
-    ),
+    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onNavigationClick: () -> Unit = {},
     onActionClick: () -> Unit = {},
 ) {
@@ -28,7 +26,6 @@ fun TTopAppBar(
                 Icon(
                     painter = navigationIcon,
                     contentDescription = navigationIconContentDescription,
-                    tint = MaterialTheme.colorScheme.onBackground,
                 )
             }
         },
@@ -37,8 +34,39 @@ fun TTopAppBar(
                 Icon(
                     painter = actionIcon,
                     contentDescription = actionIconContentDescription,
-                    tint = MaterialTheme.colorScheme.onBackground,
                 )
+            }
+        },
+        colors = colors,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TTopAppBar(
+    title: @Composable () -> Unit,
+    navigationIcon: Painter,
+    navigationIconContentDescription: String?,
+    actionText: String,
+    modifier: Modifier = Modifier,
+    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
+    onNavigationClick: () -> Unit = {},
+    onActionClick: () -> Unit = {},
+) {
+    CenterAlignedTopAppBar(
+        modifier = modifier,
+        title = { title() },
+        navigationIcon = {
+            IconButton(onClick = onNavigationClick) {
+                Icon(
+                    painter = navigationIcon,
+                    contentDescription = navigationIconContentDescription,
+                )
+            }
+        },
+        actions = {
+            TTextButton(onClick = onActionClick) {
+                Text(text = actionText)
             }
         },
         colors = colors,
@@ -52,9 +80,7 @@ fun TTopAppBarNavigationOnly(
     navigationIcon: Painter,
     navigationIconContentDescription: String?,
     modifier: Modifier = Modifier,
-    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-        containerColor = MaterialTheme.colorScheme.background
-    ),
+    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onNavigationClick: () -> Unit = {},
 ) {
     CenterAlignedTopAppBar(
@@ -65,7 +91,6 @@ fun TTopAppBarNavigationOnly(
                 Icon(
                     painter = navigationIcon,
                     contentDescription = navigationIconContentDescription,
-                    tint = MaterialTheme.colorScheme.onBackground,
                 )
             }
         },
@@ -80,9 +105,7 @@ fun TTopAppBarActionOnly(
     actionIcon: Painter,
     actionIconContentDescription: String?,
     modifier: Modifier = Modifier,
-    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-        containerColor = MaterialTheme.colorScheme.onBackground
-    ),
+    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onActionClick: () -> Unit = {},
 ) {
     CenterAlignedTopAppBar(
@@ -93,7 +116,6 @@ fun TTopAppBarActionOnly(
                 Icon(
                     painter = actionIcon,
                     contentDescription = actionIconContentDescription,
-                    tint = MaterialTheme.colorScheme.onBackground,
                 )
             }
         },
@@ -106,9 +128,7 @@ fun TTopAppBarActionOnly(
 fun TTopAppBar(
     title: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-        containerColor = MaterialTheme.colorScheme.background
-    ),
+    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
 ) {
     CenterAlignedTopAppBar(
         modifier = modifier,

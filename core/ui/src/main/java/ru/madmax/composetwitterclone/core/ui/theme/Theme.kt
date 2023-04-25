@@ -94,6 +94,8 @@ fun ComposeTwitterCloneTheme(
             currentWindow.navigationBarColor = Color.Transparent.toArgb()
             WindowCompat.getInsetsController(currentWindow, view).isAppearanceLightStatusBars =
                 !darkTheme
+            WindowCompat.getInsetsController(currentWindow, view).isAppearanceLightNavigationBars =
+                !darkTheme
         }
     }
 

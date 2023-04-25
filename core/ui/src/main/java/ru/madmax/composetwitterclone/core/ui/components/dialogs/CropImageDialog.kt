@@ -7,8 +7,6 @@ import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -76,18 +74,20 @@ fun CropImageDialog(
     var zoom by remember { mutableStateOf(1f) }
     var offset by remember { mutableStateOf(Offset.Zero) }
 
-    Dialog(properties = DialogProperties(
-        usePlatformDefaultWidth = false,
-        decorFitsSystemWindows = false,
-    ), onDismissRequest = {
-        onDismissRequest(outBitmap)
-    }) {
-        (LocalView.current.parent as DialogWindowProvider).window.setDimAmount(0f)
+    Dialog(
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false,
+            decorFitsSystemWindows = false,
+        ),
+        onDismissRequest = {
+            onDismissRequest(outBitmap)
+        }
+    ) {
+        val dialogWindowProvider = (LocalView.current.parent as DialogWindowProvider)
+        dialogWindowProvider.window.setDimAmount(0f)
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .navigationBarsPadding()
-                .statusBarsPadding()
         ) {
             Column(
                 modifier = Modifier
@@ -145,7 +145,8 @@ fun CropImageDialog(
                                 radius = screenWidth / 2f,
                                 style = Stroke(width = 5f)
                             )
-                        },
+                        }
+                        .clipToBounds(),
                     contentAlignment = Alignment.Center
                 ) {
                     Canvas(
@@ -166,19 +167,10 @@ fun CropImageDialog(
                                             newOffset.x.coerceIn(-maxX, maxX),
                                             newOffset.y.coerceIn(-maxY, maxY)
                                         )
-                                        Log.e(
-                                            "Crop Error",
-                                            "Zoom: ${zoom}\n" +
-                                                    "Offset X: ${offset.x}\n" +
-                                                    "Offset Y: ${offset.y}\n" +
-                                                    "Image Width: ${newImageWidth * zoom}\n" +
-                                                    "Image Height: ${newImageHeight * zoom}"
-                                        )
                                     }
                                 )
                             }
                             .fillMaxSize()
-                            .clipToBounds()
                     ) {
                         val canvasWidth = size.width
                         val canvasHeight = size.height

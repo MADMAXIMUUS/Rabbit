@@ -5,7 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import retrofit2.HttpException
 import ru.madmax.composetwitterclone.data.R
-import ru.madmax.composetwitterclone.data.auth.remote.AuthRemoteSource
+import ru.madmax.composetwitterclone.data.auth.remote.AuthRemoteDataSource
 import ru.madmax.composetwitterclone.data.auth.remote.LoginModel
 import ru.madmax.composetwitterclone.data.auth.remote.SignUpModel
 import ru.madmax.composetwitterclone.data.util.Constants.TOKEN
@@ -16,7 +16,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val remoteSource: AuthRemoteSource,
+    private val remoteSource: AuthRemoteDataSource,
     private val dataStore: DataStore<Preferences>
 ) : AuthRepository {
 

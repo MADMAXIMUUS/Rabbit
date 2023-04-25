@@ -5,7 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import ru.madmax.composetwitterclone.data.auth.remote.AuthRemoteSource
+import ru.madmax.composetwitterclone.data.auth.remote.AuthRemoteDataSource
+import ru.madmax.composetwitterclone.data.profile.remote.ProfileRemoteDataSource
 import javax.inject.Singleton
 
 @Module
@@ -14,7 +15,13 @@ internal object RemoteDataSourceModule {
 
     @Provides
     @Singleton
-    fun provideAuthApi(retrofit: Retrofit): AuthRemoteSource {
-        return retrofit.create(AuthRemoteSource::class.java)
+    fun provideAuthApi(retrofit: Retrofit): AuthRemoteDataSource {
+        return retrofit.create(AuthRemoteDataSource::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileApi(retrofit: Retrofit): ProfileRemoteDataSource {
+        return retrofit.create(ProfileRemoteDataSource::class.java)
     }
 }

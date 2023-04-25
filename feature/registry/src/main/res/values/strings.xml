@@ -10,12 +10,15 @@
     <string name="sign_up_message">By signing up, you agree to Terms of Service and Privacy Policy, including Cookie Use. Twitter may use your contact information, including your email address and phone number for purposes outlined secure and personalizing our services, including ads. Learn more. Others will be able to find you by email or phone number, when provided, unless you choose otherwise here.</string>
 
     <string name="sign_up_main_title">Create your account</string>
+    <string name="set_profile_picture_title">Pick a profile picture</string>
     <string name="name_label">Name</string>
     <string name="email_label">Email address</string>
     <string name="date_label">Date of birth</string>
     <string name="password_label">Password</string>
     <string name="next_button_label">Next</string>
     <string name="skip_button_label">Skip for now</string>
+
+    <string name="set_profile_picture_hint">Have a favorite selfie? Upload it now.</string>
 
     <string name="email_is_empty">Email can\'t be empty</string>
     <string name="email_is_not_valid">Email is incorrect</string>
@@ -26,5 +29,6 @@
     <string name="name_empty">Name can\' be empty</string>
 
     <string name="date_not_valid">You must be at least 13 years old</string>
+    <string name="upload">Upload</string>
 
 </resources>

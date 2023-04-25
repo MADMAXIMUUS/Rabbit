@@ -4,7 +4,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import ru.madmax.composetwitterclone.data.util.BasicApiResponse
 
-interface AuthRemoteSource {
+interface AuthRemoteDataSource {
 
     @POST("auth/signUp")
     suspend fun signUp(

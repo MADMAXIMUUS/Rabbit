@@ -60,10 +60,11 @@ dependencies {
 
     implementation libs.composeNavigation
 
-    implementation project(":core:ui")
-    implementation project(":feature:registry")
+    api project(":core:ui")
+    api project(":feature:registry")
 
     implementation libs.accompanistUiController
+    implementation libs.accompanistNavigationAnimation
     implementation libs.composeFoundation
 
     implementation libs.splash

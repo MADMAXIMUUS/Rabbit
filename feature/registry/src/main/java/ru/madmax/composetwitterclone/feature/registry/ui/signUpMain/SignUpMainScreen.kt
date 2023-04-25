@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Divider
@@ -110,9 +112,10 @@ fun SignUpMainScreen(
     }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().navigationBarsPadding()
     ) {
-        TTopAppBarNavigationOnly(navigationIcon = painterResource(id = R.drawable.ic_back_arrow),
+        TTopAppBarNavigationOnly(
+            navigationIcon = painterResource(id = R.drawable.ic_back_arrow),
             navigationIconContentDescription = "",
             title = {
                 Icon(
@@ -126,7 +129,8 @@ fun SignUpMainScreen(
             },
             onNavigationClick = {
                 navController.navigateUp()
-            })
+            }
+        )
         Spacer(modifier = Modifier.weight(0.1f))
         Text(
             modifier = Modifier.padding(horizontal = 40.dp),
@@ -276,6 +280,7 @@ fun SignUpMainScreen(
                     .fillMaxWidth()
                     .height(2.dp)
             )
+            Spacer(modifier = Modifier.height(10.dp))
             Row(modifier = Modifier.fillMaxWidth()) {
                 Spacer(modifier = Modifier.weight(0.1f))
                 TButton(enabled = state.isButtonEnabled,

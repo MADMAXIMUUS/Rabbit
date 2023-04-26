@@ -7,7 +7,9 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -30,7 +32,8 @@ fun NavController.navigateToRegistryGraph(navOptions: NavOptions? = null) {
     this.navigate(WELCOME_SCREEN, navOptions)
 }
 
-
+@ExperimentalComposeUiApi
+@ExperimentalMaterial3Api
 @ExperimentalAnimationApi
 fun NavGraphBuilder.registryGraph(
     navController: NavController,
@@ -38,13 +41,13 @@ fun NavGraphBuilder.registryGraph(
 ) {
     navigation(
         route = registryGraphRoutePattern,
-        startDestination = SET_PROFILE_BIO_SCREEN,
+        startDestination = WELCOME_SCREEN,
     ) {
         composable(
             route = WELCOME_SCREEN,
             exitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = {- 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -53,7 +56,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popEnterTransition = {
                 slideInHorizontally(
-                    initialOffsetX = { 300 },
+                    initialOffsetX = { -300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -62,7 +65,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popExitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = { 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -76,7 +79,7 @@ fun NavGraphBuilder.registryGraph(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) +fadeIn(animationSpec = tween(300))
+                ) + fadeIn(animationSpec = tween(300))
             }
         ) {
             WelcomeScreen(navController)
@@ -85,7 +88,7 @@ fun NavGraphBuilder.registryGraph(
             route = MAIN_SIGN_UP_SCREEN,
             exitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = {- 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -94,7 +97,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popEnterTransition = {
                 slideInHorizontally(
-                    initialOffsetX = { 300 },
+                    initialOffsetX = { -300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -103,7 +106,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popExitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = { 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -117,7 +120,7 @@ fun NavGraphBuilder.registryGraph(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) +fadeIn(animationSpec = tween(300))
+                ) + fadeIn(animationSpec = tween(300))
             }
         ) {
             SignUpMainScreen(navController, snackbarHostState)
@@ -126,7 +129,7 @@ fun NavGraphBuilder.registryGraph(
             route = CONFIRM_SIGN_UP_SCREEN_PATTERN,
             exitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = {- 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -135,7 +138,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popEnterTransition = {
                 slideInHorizontally(
-                    initialOffsetX = { 300 },
+                    initialOffsetX = { -300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -144,7 +147,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popExitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = { 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -158,7 +161,7 @@ fun NavGraphBuilder.registryGraph(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) +fadeIn(animationSpec = tween(300))
+                ) + fadeIn(animationSpec = tween(300))
             }
         ) {
             val name = it.arguments?.getString("name").toString()
@@ -176,7 +179,7 @@ fun NavGraphBuilder.registryGraph(
             route = SET_PROFILE_IMAGE_SCREEN,
             exitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = {- 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -185,7 +188,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popEnterTransition = {
                 slideInHorizontally(
-                    initialOffsetX = { 300 },
+                    initialOffsetX = { -300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -194,7 +197,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popExitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = { 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -208,7 +211,7 @@ fun NavGraphBuilder.registryGraph(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) +fadeIn(animationSpec = tween(300))
+                ) + fadeIn(animationSpec = tween(300))
             }
         ) {
             SetProfileImageScreen(navController, snackbarHostState)
@@ -217,7 +220,7 @@ fun NavGraphBuilder.registryGraph(
             route = SET_PROFILE_BIO_SCREEN,
             exitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = {- 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -226,7 +229,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popEnterTransition = {
                 slideInHorizontally(
-                    initialOffsetX = { 300 },
+                    initialOffsetX = { -300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -235,7 +238,7 @@ fun NavGraphBuilder.registryGraph(
             },
             popExitTransition = {
                 slideOutHorizontally(
-                    targetOffsetX = { -300 },
+                    targetOffsetX = { 300 },
                     animationSpec = tween(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
@@ -249,10 +252,13 @@ fun NavGraphBuilder.registryGraph(
                         durationMillis = 300,
                         easing = FastOutSlowInEasing
                     )
-                ) +fadeIn(animationSpec = tween(300))
+                ) + fadeIn(animationSpec = tween(300))
             }
         ) {
-            SetProfileBioScreen()
+            SetProfileBioScreen(
+                navController = navController,
+                snackbarHostState = snackbarHostState
+            )
         }
     }
 }

@@ -1,10 +1,15 @@
 package ru.madmax.composetwitterclone.core.ui.components
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.VisualTransformation
@@ -188,6 +193,42 @@ fun TProfileTextField(
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         prefix = prefix,
+        label = {
+            Text(text = label)
+        },
+        onValueChange = {
+            onValueChange(it)
+        }
+    )
+}
+
+@Composable
+fun TMultiLineProfileTextField(
+    modifier: Modifier = Modifier,
+    label: String,
+    readOnly: Boolean = false,
+    value: String,
+    interactionSource: MutableInteractionSource = MutableInteractionSource(),
+    colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
+    supportingText: (@Composable () -> Unit)? = null,
+    isError: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onValueChange: (String) -> Unit
+) {
+    OutlinedTextField(
+        modifier = modifier
+            .height(160.dp),
+        value = value,
+        colors = colors,
+        readOnly = readOnly,
+        interactionSource = interactionSource,
+        supportingText = supportingText,
+        maxLines = 6,
+        isError = isError,
+        singleLine = false,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
         label = {
             Text(text = label)
         },

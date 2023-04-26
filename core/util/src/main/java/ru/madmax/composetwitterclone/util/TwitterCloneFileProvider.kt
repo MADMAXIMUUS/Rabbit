@@ -8,7 +8,7 @@ class TwitterCloneFileProvider: FileProvider(R.xml.file_paths){
 
     companion object {
         fun getImageUri(context: Context): Uri {
-            val file = FileUtils.createImageFile(context)
+            val file = FileUtils.createTempImageFile(context)
             val authority = context.packageName + ".util.fileProvider"
             return getUriForFile(
                 context,

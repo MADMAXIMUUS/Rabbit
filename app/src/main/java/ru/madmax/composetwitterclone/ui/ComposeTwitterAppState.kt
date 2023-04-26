@@ -30,8 +30,6 @@ class AppState(
     val drawerState: DrawerState,
     val coroutineScope: CoroutineScope,
     val navController: NavHostController
-) {
-
-}
+)
 
 

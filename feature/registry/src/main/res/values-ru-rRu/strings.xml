@@ -22,7 +22,7 @@
     <string name="email_is_not_valid">Некорректный Email</string>
 
     <string name="short_password">Пароль должен содержать как минимум 8 символов</string>
-    <string name="week_password">Пароль должен содержать хотя бы одну букву и цифру</string>
+    <string name="password_empty">Введите пароль</string>
 
     <string name="sign_up_main_title">Создать аккаунт</string>
     <string name="set_profile_picture_title">Выберите фоторгафию</string>

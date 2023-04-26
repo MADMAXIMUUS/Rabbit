@@ -1,7 +1,23 @@
 package ru.madmax.composetwitterclone.feature.registry.ui.signUpConfirm
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -27,6 +43,7 @@ import ru.madmax.composetwitterclone.core.ui.components.TProfileTextField
 import ru.madmax.composetwitterclone.core.ui.components.TProfileTextFieldTrailing
 import ru.madmax.composetwitterclone.core.ui.components.TTopAppBarNavigationOnly
 import ru.madmax.composetwitterclone.feature.registry.R
+import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.WELCOME_SCREEN
 import ru.madmax.composetwitterclone.util.UiAction
 import ru.madmax.composetwitterclone.util.asString
 
@@ -60,7 +77,11 @@ fun SignUpConfirmScreen(
                 }
 
                 is UiAction.Navigate -> {
-                    navController.navigate(event.route)
+                    navController.navigate(event.route) {
+                        popUpTo(WELCOME_SCREEN) {
+                            inclusive = true
+                        }
+                    }
                     keyboardController?.hide()
                 }
 
@@ -228,7 +249,7 @@ fun SignUpConfirmScreen(
             if (state.isLoading) {
                 CircularProgressIndicator(
                     color = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.size(20.dp),
+                    modifier = Modifier.size(22.dp),
                     strokeWidth = 3.dp,
                     strokeCap = StrokeCap.Round
                 )

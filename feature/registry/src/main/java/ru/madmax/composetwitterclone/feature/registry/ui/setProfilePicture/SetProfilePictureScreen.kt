@@ -6,9 +6,11 @@ import android.os.Build
 import android.provider.MediaStore
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +23,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -40,6 +44,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -59,6 +64,10 @@ import ru.madmax.composetwitterclone.core.ui.components.TTextButton
 import ru.madmax.composetwitterclone.core.ui.components.TTopAppBar
 import ru.madmax.composetwitterclone.core.ui.components.dashedBorder
 import ru.madmax.composetwitterclone.core.ui.components.dialogs.CropImageDialog
+import ru.madmax.composetwitterclone.feature.registry.navigation.Routes
+import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.CONFIRM_SIGN_UP_SCREEN
+import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.SET_PROFILE_IMAGE_SCREEN
+import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.WELCOME_SCREEN
 import ru.madmax.composetwitterclone.util.FileUtils
 import ru.madmax.composetwitterclone.util.TwitterCloneFileProvider
 import ru.madmax.composetwitterclone.util.UiAction
@@ -89,7 +98,11 @@ fun SetProfileImageScreen(
                 }
 
                 is UiAction.Navigate -> {
-                    navController.navigate(event.route)
+                    navController.navigate(event.route) {
+                        popUpTo(SET_PROFILE_IMAGE_SCREEN) {
+                            inclusive = true
+                        }
+                    }
                 }
 
                 else -> {}
@@ -285,6 +298,13 @@ fun SetProfileImageScreen(
                 TOutlineButton(
                     modifier = Modifier
                         .padding(start = 10.dp),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = MaterialTheme.colorScheme.secondary
+                    ),
+                    border = BorderStroke(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.secondary
+                    ),
                     onClick = {
                         viewModel.skip()
                     }
@@ -296,11 +316,27 @@ fun SetProfileImageScreen(
                     modifier = Modifier.padding(end = 10.dp),
                     onClick = {
                         val file = state
-                            .croppedPhoto?.let { FileUtils.bitmapToFile(context, it) }
+                            .croppedPhoto?.let { FileUtils.bitmapToFile(it) }
                         file?.let { viewModel.next(it) }
-                    }
+                    },
+                    contentPadding = if (state.isLoading) PaddingValues(
+                        horizontal = 34.dp
+                    ) else
+                        ButtonDefaults.ContentPadding
                 ) {
-                    Text(stringResource(ru.madmax.composetwitterclone.feature.registry.R.string.next_button_label))
+                    if (state.isLoading) {
+                        CircularProgressIndicator(
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier
+                                .size(20.dp),
+                            strokeWidth = 3.dp,
+                            strokeCap = StrokeCap.Round
+                        )
+                    } else {
+                        Text(
+                            text = stringResource(ru.madmax.composetwitterclone.feature.registry.R.string.next_button_label)
+                        )
+                    }
                 }
             }
         }

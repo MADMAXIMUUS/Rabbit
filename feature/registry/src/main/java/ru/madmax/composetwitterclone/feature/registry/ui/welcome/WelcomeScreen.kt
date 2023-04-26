@@ -1,5 +1,6 @@
 package ru.madmax.composetwitterclone.feature.registry.ui.welcome
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -54,6 +55,13 @@ fun WelcomeScreen(navController: NavController) {
             onClick = {
 
             },
+            colors = ButtonDefaults.outlinedButtonColors(
+                contentColor = MaterialTheme.colorScheme.secondary
+            ),
+            border = BorderStroke(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.secondary
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),

@@ -9,5 +9,6 @@ data class SetProfilePictureScreenState(
     val croppedPhoto: Bitmap? = null,
     val photoWidth: Int = 0,
     val photoHeight: Int = 0,
-    val isNeedCropDialog: Boolean = false
+    val isNeedCropDialog: Boolean = false,
+    val isLoading: Boolean = false,
 )

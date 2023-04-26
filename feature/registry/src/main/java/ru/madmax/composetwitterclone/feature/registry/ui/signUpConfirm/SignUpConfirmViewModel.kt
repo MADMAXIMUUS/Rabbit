@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.madmax.composetwitterclone.data.auth.AuthRepository
 import ru.madmax.composetwitterclone.data.util.Resource
+import ru.madmax.composetwitterclone.feature.registry.R
 import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.SET_PROFILE_IMAGE_SCREEN
 import ru.madmax.composetwitterclone.feature.registry.util.ValidatePassword
 import ru.madmax.composetwitterclone.util.UiAction
@@ -81,47 +82,56 @@ class SignUpConfirmViewModel @Inject constructor(
     }
 
     fun signUp() {
-        _uiState.update { currentState ->
-            currentState.copy(
-                isLoading = true
-            )
-        }
-        val date = uiState
-            .value
-            .localDateValue
-            .atStartOfDay(ZoneId.systemDefault())
-            .toInstant()
-            .toEpochMilli()
-        viewModelScope.launch {
-            val response = repository.signUp(
-                uiState.value.nameValue,
-                uiState.value.emailValue,
-                date,
-                uiState.value.passwordValue
-            )
-            when (response) {
-                is Resource.Success -> {
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            isLoading = false
-                        )
+        if (uiState.value.passwordValue.isEmpty()) {
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isPasswordError = true,
+                    passwordError = R.string.password_empty
+                )
+            }
+        } else {
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isLoading = true
+                )
+            }
+            val date = uiState
+                .value
+                .localDateValue
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli()
+            viewModelScope.launch {
+                val response = repository.signUp(
+                    uiState.value.nameValue,
+                    uiState.value.emailValue,
+                    date,
+                    uiState.value.passwordValue
+                )
+                when (response) {
+                    is Resource.Success -> {
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                isLoading = false
+                            )
+                        }
+                        _eventFlow.emit(UiAction.Navigate(SET_PROFILE_IMAGE_SCREEN))
                     }
-                    _eventFlow.emit(UiAction.Navigate(SET_PROFILE_IMAGE_SCREEN))
-                }
 
-                is Resource.Error -> {
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            isLoading = false
-                        )
-                    }
-                    _eventFlow.emit(
-                        UiAction.ShowSnackbar(
-                            response.message ?: UiText.StringResource(
-                                ru.madmax.composetwitterclone.data.R.string.unknown_error
+                    is Resource.Error -> {
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                isLoading = false
+                            )
+                        }
+                        _eventFlow.emit(
+                            UiAction.ShowSnackbar(
+                                response.message ?: UiText.StringResource(
+                                    ru.madmax.composetwitterclone.data.R.string.unknown_error
+                                )
                             )
                         )
-                    )
+                    }
                 }
             }
         }

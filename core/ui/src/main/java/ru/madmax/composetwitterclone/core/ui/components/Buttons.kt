@@ -1,11 +1,19 @@
 package ru.madmax.composetwitterclone.core.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -13,7 +21,8 @@ fun TOutlineButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    borderWidth: Dp = 1.dp,
+    border: BorderStroke = ButtonDefaults.outlinedButtonBorder,
+    colors: ButtonColors = ButtonDefaults.outlinedButtonColors(),
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     content: @Composable RowScope.() -> Unit,
 ) {
@@ -21,16 +30,8 @@ fun TOutlineButton(
         modifier = modifier,
         onClick = { onClick() },
         contentPadding = contentPadding,
-        border = BorderStroke(
-            width = borderWidth,
-            color = if (enabled) {
-                MaterialTheme.colorScheme.primary
-            } else {
-                MaterialTheme.colorScheme.onSurface.copy(
-                    alpha = 0.12f,
-                )
-            },
-        ),
+        border = border,
+        colors = colors,
         enabled = enabled
     ) {
         content()
@@ -42,15 +43,17 @@ fun TOutlineButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    borderWidth: Dp = 1.dp,
+    border: BorderStroke = ButtonDefaults.outlinedButtonBorder,
     text: @Composable () -> Unit,
+    colors: ButtonColors = ButtonDefaults.outlinedButtonColors(),
     leadingIcon: @Composable (() -> Unit)? = null,
 ) {
     TOutlineButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        borderWidth = borderWidth,
+        colors = colors,
+        border = border,
         contentPadding = if (leadingIcon != null) {
             ButtonDefaults.ButtonWithIconContentPadding
         } else {

@@ -10,16 +10,19 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.google.accompanist.navigation.animation.navigation
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import ru.madmax.composetwitterclone.feature.registry.navigation.registryGraph
 import ru.madmax.composetwitterclone.feature.registry.navigation.registryGraphRoutePattern
 
+@ExperimentalMaterial3Api
+@ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @ExperimentalLayoutApi
 @Composable
@@ -29,7 +32,6 @@ fun ComposeTwitterApp(
     val appState = rememberAppState()
     Scaffold(
         bottomBar = {
-
         },
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         containerColor = Color.Transparent,

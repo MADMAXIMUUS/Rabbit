@@ -1,6 +1,5 @@
-package ru.madmax.composetwitterclone.feature.registry.ui.setProfilePicture
+package ru.madmax.composetwitterclone.feature.registry.ui.setProfileBio
 
-import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,29 +14,23 @@ import ru.madmax.composetwitterclone.data.util.Resource
 import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.SET_PROFILE_BIO_SCREEN
 import ru.madmax.composetwitterclone.util.UiAction
 import ru.madmax.composetwitterclone.util.UiText
-import java.io.File
 import javax.inject.Inject
 
 
 @HiltViewModel
-class SetPicturePictureViewModel @Inject constructor(
+class SetPictureBioViewModel @Inject constructor(
     private val profileRepository: ProfileRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(SetProfilePictureScreenState())
+    private val _uiState = MutableStateFlow(SetProfileBioScreenState())
     val uiState = _uiState.asStateFlow()
 
     private val _eventFlow = MutableSharedFlow<UiAction>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    fun next(file: File) {
+    fun next() {
         viewModelScope.launch {
-            _uiState.update { currentState ->
-                currentState.copy(
-                    isLoading = true
-                )
-            }
-            when (val response = profileRepository.setProfilePhoto(file)) {
+            when (val response = profileRepository.setProfileBio(bio = uiState.value.text)) {
                 is Resource.Error -> {
                     _eventFlow.emit(
                         UiAction.ShowSnackbar(
@@ -49,11 +42,6 @@ class SetPicturePictureViewModel @Inject constructor(
                 }
 
                 is Resource.Success -> {
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            isLoading = false
-                        )
-                    }
                     _eventFlow.emit(UiAction.Navigate(SET_PROFILE_BIO_SCREEN))
                 }
             }
@@ -66,46 +54,15 @@ class SetPicturePictureViewModel @Inject constructor(
         }
     }
 
-    fun setPhoto(bitmap: Bitmap) {
-        _uiState.update { currentState ->
-            currentState.copy(
-                isNeedCropDialog = true,
-                photo = bitmap,
-                photoWidth = bitmap.width,
-                photoHeight = bitmap.height
-            )
-        }
-    }
-
-    fun showDialog() {
-        _uiState.update { currentState ->
-            currentState.copy(
-                isNeedTypeDialog = true
-            )
-        }
-    }
-
-    fun hideDialog() {
-        _uiState.update { currentState ->
-            currentState.copy(
-                isNeedTypeDialog = false
-            )
-        }
-    }
-
-    fun setCroppedPhoto(photo: Bitmap?) {
-        if (photo != null) {
+    fun updateText(text: String) {
+        if (text.length <= 160) {
             _uiState.update { currentState ->
                 currentState.copy(
-                    croppedPhoto = photo,
-                    isButtonEnabled = true
+                    isButtonEnabled = text.isNotEmpty(),
+                    text = text,
+                    textLength = text.length
                 )
             }
-        }
-        _uiState.update { currentState ->
-            currentState.copy(
-                isNeedCropDialog = false
-            )
         }
     }
 

@@ -24,7 +24,7 @@
     <string name="email_is_not_valid">Email is incorrect</string>
 
     <string name="short_password">Password must contain at least 8 characters</string>
-    <string name="week_password">Password must contain at least one letter and number</string>
+    <string name="password_empty">Enter password</string>
 
     <string name="name_empty">Name can\' be empty</string>
 

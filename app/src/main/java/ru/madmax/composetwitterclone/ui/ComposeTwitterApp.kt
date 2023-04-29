@@ -30,13 +30,26 @@ fun ComposeTwitterApp(
     shouldShowWelcomeScreen: Boolean
 ) {
     val appState = rememberAppState()
-    Scaffold(
-        bottomBar = {
-        },
+    Scaffold(bottomBar = {},
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         containerColor = Color.Transparent,
-        snackbarHost = { SnackbarHost(hostState = appState.snackbarHostState) }
-    ) { padding ->
+        snackbarHost = {
+            SnackbarHost(hostState = appState.snackbarHostState) /*{ snackbarData ->
+                val customVisuals = snackbarData.visuals as? SnackbarVisualsCustom
+                if (customVisuals != null) {
+                    TSnackbar(
+                        icon = customVisuals.icon,
+                        message = customVisuals.message,
+                        colors = customVisuals.colors,
+                        closeIcon = customVisuals.closeIcon,
+                        actionLabel = customVisuals.actionLabel,
+                        isOnTop = customVisuals.isOnTop
+                    )
+                } else {
+                    Snackbar(snackbarData = snackbarData)
+                }
+            }*/
+        }) { padding ->
         AnimatedNavHost(
             modifier = Modifier
                 .fillMaxSize()

@@ -38,6 +38,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
+import ru.madmax.composetwitterclone.core.ui.components.SnackbarColorsCustom
+import ru.madmax.composetwitterclone.core.ui.components.SnackbarVisualsCustom
 import ru.madmax.composetwitterclone.core.ui.components.TButton
 import ru.madmax.composetwitterclone.core.ui.components.TProfileTextField
 import ru.madmax.composetwitterclone.core.ui.components.TProfileTextFieldTrailing
@@ -71,8 +73,15 @@ fun SignUpConfirmScreen(
                 is UiAction.ShowSnackbar -> {
                     keyboardController?.hide()
                     snackbarHostState.showSnackbar(
+                        /*SnackbarVisualsCustom(
+                            message = event.message.asString(context),
+                            duration = SnackbarDuration.Indefinite,
+                            actionLabel = "Action",
+                            icon = ru.madmax.composetwitterclone.core.ui.R.drawable.ethernet_error,
+                            closeIcon = ru.madmax.composetwitterclone.core.ui.R.drawable.ic_close
+                        )*/
                         message = event.message.asString(context),
-                        duration = SnackbarDuration.Long
+                        duration = SnackbarDuration.Short,
                     )
                 }
 

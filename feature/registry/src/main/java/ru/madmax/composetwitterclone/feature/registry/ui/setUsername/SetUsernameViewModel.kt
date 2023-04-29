@@ -1,4 +1,4 @@
-package ru.madmax.composetwitterclone.feature.registry.ui.setProfileBio
+package ru.madmax.composetwitterclone.feature.registry.ui.setUsername
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,18 +11,18 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.madmax.composetwitterclone.data.profile.ProfileRepository
 import ru.madmax.composetwitterclone.data.util.Resource
-import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.SET_USERNAME_SCREEN
+import ru.madmax.composetwitterclone.feature.registry.navigation.Routes.SET_PROFILE_BIO_SCREEN
 import ru.madmax.composetwitterclone.util.UiAction
 import ru.madmax.composetwitterclone.util.UiText
 import javax.inject.Inject
 
 
 @HiltViewModel
-class SetPictureBioViewModel @Inject constructor(
+class SetUsernameViewModel @Inject constructor(
     private val profileRepository: ProfileRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(SetProfileBioScreenState())
+    private val _uiState = MutableStateFlow(SetUsernameScreenState())
     val uiState = _uiState.asStateFlow()
 
     private val _eventFlow = MutableSharedFlow<UiAction>()
@@ -42,7 +42,7 @@ class SetPictureBioViewModel @Inject constructor(
                 }
 
                 is Resource.Success -> {
-                    _eventFlow.emit(UiAction.Navigate(SET_USERNAME_SCREEN))
+                    _eventFlow.emit(UiAction.Navigate(SET_PROFILE_BIO_SCREEN))
                 }
             }
         }
@@ -50,19 +50,16 @@ class SetPictureBioViewModel @Inject constructor(
 
     fun skip() {
         viewModelScope.launch {
-            _eventFlow.emit(UiAction.Navigate(SET_USERNAME_SCREEN))
+            _eventFlow.emit(UiAction.Navigate(SET_PROFILE_BIO_SCREEN))
         }
     }
 
     fun updateText(text: String) {
-        if (text.length <= 160) {
-            _uiState.update { currentState ->
-                currentState.copy(
-                    isButtonEnabled = text.isNotEmpty(),
-                    text = text,
-                    textLength = text.length
-                )
-            }
+        _uiState.update { currentState ->
+            currentState.copy(
+                isButtonEnabled = text.isNotEmpty(),
+                text = text
+            )
         }
     }
 

@@ -41,7 +41,7 @@ class ProfileRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun setProfileBio(
+    override suspend fun updateProfileInfo(
         username: String?,
         bio: String?,
         profileImage: File?,

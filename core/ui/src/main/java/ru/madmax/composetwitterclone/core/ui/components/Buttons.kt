@@ -45,6 +45,7 @@ fun TOutlineButton(
     enabled: Boolean = true,
     border: BorderStroke = ButtonDefaults.outlinedButtonBorder,
     text: @Composable () -> Unit,
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     colors: ButtonColors = ButtonDefaults.outlinedButtonColors(),
     leadingIcon: @Composable (() -> Unit)? = null,
 ) {
@@ -54,11 +55,7 @@ fun TOutlineButton(
         enabled = enabled,
         colors = colors,
         border = border,
-        contentPadding = if (leadingIcon != null) {
-            ButtonDefaults.ButtonWithIconContentPadding
-        } else {
-            ButtonDefaults.ContentPadding
-        }
+        contentPadding = contentPadding
     ) {
         TButtonContent(text, leadingIcon)
     }

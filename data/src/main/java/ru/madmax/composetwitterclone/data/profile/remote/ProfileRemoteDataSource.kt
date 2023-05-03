@@ -17,7 +17,7 @@ interface ProfileRemoteDataSource {
 
 
     @Multipart
-    @PUT("profile/update")
+    @PUT("profile/data")
     suspend fun updateProfile(
         @Part bannerImage: MultipartBody.Part?,
         @Part profilePicture: MultipartBody.Part?,

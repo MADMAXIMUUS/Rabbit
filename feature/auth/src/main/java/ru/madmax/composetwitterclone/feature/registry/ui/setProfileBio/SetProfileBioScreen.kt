@@ -37,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -201,7 +202,18 @@ fun SetProfileBioScreen(
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(5.dp))
         }
-
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BioPreview() {
+    SetProfileBioScreen(
+        state = SetProfileBioScreenState(),
+        updateText = {},
+        skip = {},
+        next = {}
+    )
 }

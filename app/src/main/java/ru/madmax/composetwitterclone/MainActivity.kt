@@ -64,13 +64,13 @@ class MainActivity : ComponentActivity() {
                 onDispose {}
             }
 
-            ComposeTwitterCloneTheme(dynamicColor = true) {
+            ComposeTwitterCloneTheme(dynamicColor = false) {
                 Surface(
                     modifier = Modifier
                         .fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    ComposeTwitterApp(false)
+                    ComposeTwitterApp(true)
                 }
             }
         }

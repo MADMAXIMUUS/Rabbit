@@ -11,9 +11,11 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -28,6 +30,7 @@ fun TOutlineButton(
 ) {
     OutlinedButton(
         modifier = modifier,
+        shape = MaterialTheme.shapes.large,
         onClick = { onClick() },
         contentPadding = contentPadding,
         border = border,
@@ -73,6 +76,7 @@ fun TButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
+        shape = MaterialTheme.shapes.large,
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
         ),
@@ -116,6 +120,7 @@ fun TTextButton(
 ) {
     TextButton(
         onClick = onClick,
+        shape = MaterialTheme.shapes.large,
         modifier = modifier,
         enabled = enabled,
         colors = colors,
@@ -166,5 +171,30 @@ private fun TButtonContent(
             ),
     ) {
         text()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TOutlineButtonPreview() {
+    TOutlineButton(
+        onClick = {}) {
+        Text("Я текст")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TButtonPreview() {
+    TButton(onClick = {}) {
+        Text("Я текст")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TTextButtonPreview() {
+    TTextButton(onClick = { }) {
+        Text("Я текст")
     }
 }

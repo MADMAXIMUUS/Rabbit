@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class SetPicturePictureViewModel @Inject constructor(
+class SetProfilePictureViewModel @Inject constructor(
     private val profileRepository: ProfileRepository
 ) : ViewModel() {
 

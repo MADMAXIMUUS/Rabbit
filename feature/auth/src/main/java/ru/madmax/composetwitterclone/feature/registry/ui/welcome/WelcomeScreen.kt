@@ -1,8 +1,21 @@
 package ru.madmax.composetwitterclone.feature.registry.ui.welcome
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -10,14 +23,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.madmax.composetwitterclone.core.ui.components.TButton
 import ru.madmax.composetwitterclone.core.ui.components.TOutlineButton
-import ru.madmax.composetwitterclone.core.ui.components.TTopAppBar
 import ru.madmax.composetwitterclone.feature.registry.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun WelcomeScreen(
     navigateToGoogleAuth: () -> Unit,
@@ -28,21 +40,9 @@ internal fun WelcomeScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        TTopAppBar(
-            title = {
-                Icon(
-                    modifier = Modifier
-                        .width(24.dp)
-                        .height(24.dp),
-                    painter = painterResource(id = ru.madmax.composetwitterclone.core.ui.R.drawable.app_logo),
-                    tint = MaterialTheme.colorScheme.primary,
-                    contentDescription = ""
-                )
-            },
-        )
         Spacer(
             modifier = Modifier
-                .weight(0.5f)
+                .weight(0.3f)
         )
         Text(
             modifier = Modifier
@@ -53,7 +53,24 @@ internal fun WelcomeScreen(
         )
         Spacer(
             modifier = Modifier
-                .weight(0.5f)
+                .weight(0.1f)
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                modifier = Modifier
+                    .size(300.dp),
+                painter = painterResource(id = ru.madmax.composetwitterclone.core.ui.R.drawable.app_logo),
+                tint = MaterialTheme.colorScheme.primary,
+                contentDescription = ""
+            )
+        }
+        Spacer(
+            modifier = Modifier
+                .weight(0.1f)
         )
         TOutlineButton(
             onClick = {
@@ -80,7 +97,7 @@ internal fun WelcomeScreen(
             },
             contentPadding = PaddingValues(vertical = 15.dp, horizontal = 16.dp)
         )
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -104,7 +121,7 @@ internal fun WelcomeScreen(
                     .height(2.dp)
             )
         }
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         TButton(
             onClick = {
                 navigateToSignUp()
@@ -141,4 +158,14 @@ internal fun WelcomeScreen(
                 .weight(0.2f)
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun WelcomePreview() {
+    WelcomeScreen(
+        navigateToGoogleAuth = {},
+        navigateToSignUp = {},
+        navigateToLogIn = {}
+    )
 }

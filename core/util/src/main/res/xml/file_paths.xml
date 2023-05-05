@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <files-path
-        name="twitter_clone_images"
+        name="rabbit_images"
         path="images/" />
     <cache-path
-        name="twitter_clone_images"
+        name="rabbit_images"
         path="images/" />
 </paths>

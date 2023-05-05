@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Base.V26.Theme.ComposeTwitterClone" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Base.V26.Theme.Rabbit" parent="android:Theme.Material.Light.NoActionBar" />
 
-    <style name="Base.Theme.ComposeTwitterClone" parent="Base.V26.Theme.ComposeTwitterClone" />
+    <style name="Base.Theme.Rabbit" parent="Base.V26.Theme.Rabbit" />
 
-    <style name="Theme.ComposeTwitterClone" parent="Base.Theme.ComposeTwitterClone" />
+    <style name="Theme.Rabbit" parent="Base.Theme.Rabbit" />
 
 </resources>

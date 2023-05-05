@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Base.Night.Splash.v26.Theme.TwitterClone" parent="Theme.SplashScreen">
+    <style name="Base.Night.Splash.v26.Theme.Rabbit" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/twitter_blue</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/app_logo_splash</item>
         <item name="windowSplashScreenAnimationDuration">2000</item>
-        <item name="postSplashScreenTheme">@style/Theme.ComposeTwitterClone</item>
+        <item name="postSplashScreenTheme">@style/Theme.Rabbit</item>
         <item name="android:statusBarColor">@color/twitter_blue</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@color/twitter_blue</item>
     </style>
 
-    <style name="Base.Night.Theme.Splash" parent="Base.Night.Splash.v26.Theme.TwitterClone" />
+    <style name="Base.Night.Theme.Splash" parent="Base.Night.Splash.v26.Theme.Rabbit" />
 
-    <style name="Theme.Splash.TwitterClone" parent="Base.Night.Theme.Splash" />
+    <style name="Theme.Splash.Rabbit" parent="Base.Night.Theme.Splash" />
 
 </resources>

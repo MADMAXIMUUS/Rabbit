@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="have_account_hint">Уже есть аккаунт? Войдите</string>
+    <string name="have_account_hint">Уже есть аккаунт?</string>
+    <string name="log_in_hint">Войдите</string>
     <string name="welcome_message">Узнайте, что происходит в мире прямо сейчас.</string>
     <string name="or">или</string>
     <string name="sign_in_with_google">Войдите с Google</string>

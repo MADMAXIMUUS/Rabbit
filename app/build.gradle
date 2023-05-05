@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.madmax.composetwitterclone'
+    namespace 'ru.madmax.rabbit'
     compileSdk 33
 
     defaultConfig {
-        applicationId "ru.madmax.composetwitterclone"
+        applicationId "ru.madmax.rabbit"
         minSdk 26
         targetSdk 33
         versionCode 1

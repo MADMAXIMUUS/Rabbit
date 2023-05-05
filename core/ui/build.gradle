@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'ru.madmax.composetwitterclone.core.ui'
+    namespace 'ru.madmax.rabbit.core.ui'
     compileSdk 33
 
     defaultConfig {

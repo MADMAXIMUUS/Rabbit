@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="have_account_hint">Have an account already? Log in</string>
+    <string name="have_account_hint">Have an account already?</string>
+    <string name="log_in_hint">Log in</string>
     <string name="welcome_message">See what\'s happening in the world right now.</string>
     <string name="or">or</string>
     <string name="sign_in_with_google">Sign in with Google</string>

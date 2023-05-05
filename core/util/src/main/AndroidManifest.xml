@@ -5,7 +5,7 @@
 
         <provider
             android:name=".TwitterCloneFileProvider"
-            android:authorities="ru.madmax.composetwitterclone.util.fileProvider"
+            android:authorities="ru.madmax.rabbit.util.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

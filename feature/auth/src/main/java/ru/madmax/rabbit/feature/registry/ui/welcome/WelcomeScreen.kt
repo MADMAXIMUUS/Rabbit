@@ -1,5 +1,6 @@
 package ru.madmax.rabbit.feature.registry.ui.welcome
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,9 +32,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import ru.madmax.rabbit.core.ui.components.TButton
 import ru.madmax.rabbit.core.ui.components.TOutlineButton
+import ru.madmax.rabbit.core.ui.theme.RabbitCloneTheme
 import ru.madmax.rabbit.feature.registry.R
 import ru.madmax.rabbit.feature.registry.navigation.Routes.LOG_IN_SCREEN_ROUTE
 
@@ -49,7 +51,14 @@ internal fun WelcomeScreen(
         append(logIn)
         val start = "$text ".length
         val end = start + logIn.length
-
+        addStyle(
+            SpanStyle(
+                color = MaterialTheme.colorScheme.onSurface,
+                textDecoration = TextDecoration.None
+            ),
+            0,
+            start - 1
+        )
         addStyle(
             SpanStyle(
                 color = MaterialTheme.colorScheme.primary,
@@ -77,7 +86,7 @@ internal fun WelcomeScreen(
         )
         Text(
             modifier = Modifier
-                .padding(horizontal = 40.dp),
+                .padding(horizontal = 30.dp),
             text = stringResource(R.string.welcome_message),
             style = MaterialTheme.typography.displaySmall,
             fontWeight = FontWeight.Bold
@@ -116,9 +125,12 @@ internal fun WelcomeScreen(
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 40.dp),
+                .padding(horizontal = 30.dp),
             text = {
-                Text(text = stringResource(R.string.sign_in_with_google), fontSize = 15.sp)
+                Text(
+                    text = stringResource(R.string.sign_in_with_google),
+                    style = MaterialTheme.typography.titleMedium
+                )
             },
             leadingIcon = {
                 Icon(
@@ -143,7 +155,7 @@ internal fun WelcomeScreen(
             Text(
                 text = stringResource(R.string.or),
                 modifier = Modifier.padding(horizontal = 10.dp),
-                fontSize = 18.sp,
+                style = MaterialTheme.typography.titleLarge,
                 textAlign = TextAlign.Center
             )
             Divider(
@@ -159,10 +171,13 @@ internal fun WelcomeScreen(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 40.dp),
+                .padding(horizontal = 30.dp),
             contentPadding = PaddingValues(vertical = 15.dp, horizontal = 24.dp)
         ) {
-            Text(text = stringResource(R.string.create_account), fontSize = 15.sp)
+            Text(
+                text = stringResource(R.string.create_account),
+                style = MaterialTheme.typography.titleMedium
+            )
         }
         Spacer(modifier = Modifier.weight(0.1f))
         Text(
@@ -193,9 +208,27 @@ internal fun WelcomeScreen(
 @Preview(showBackground = true)
 @Composable
 fun WelcomePreview() {
-    WelcomeScreen(
-        navigateToGoogleAuth = {},
-        navigateToSignUp = {},
-        navigateToLogIn = {}
-    )
+    RabbitCloneTheme {
+        Surface {
+            WelcomeScreen(
+                navigateToGoogleAuth = {},
+                navigateToSignUp = {},
+                navigateToLogIn = {}
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun WelcomeDarkPreview() {
+    RabbitCloneTheme {
+        Surface {
+            WelcomeScreen(
+                navigateToGoogleAuth = {},
+                navigateToSignUp = {},
+                navigateToLogIn = {}
+            )
+        }
+    }
 }

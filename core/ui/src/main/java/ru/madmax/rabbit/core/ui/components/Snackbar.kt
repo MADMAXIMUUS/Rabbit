@@ -1,7 +1,7 @@
 package ru.madmax.rabbit.core.ui.components
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,39 +18,32 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarVisuals
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.madmax.rabbit.core.ui.theme.RabbitCloneTheme
 
 data class SnackbarVisualsCustom(
     override val message: String,
     override val actionLabel: String? = null,
     override val withDismissAction: Boolean = false,
     override val duration: SnackbarDuration = SnackbarDuration.Indefinite,
-    val colors: SnackbarColorsCustom = SnackbarColorsCustom(),
     val isOnTop: Boolean = false,
     @DrawableRes val icon: Int? = null,
     @DrawableRes val closeIcon: Int? = null,
     val onAction: (() -> Unit)? = null,
     val onDismiss: (() -> Unit)? = null
 ) : SnackbarVisuals
-
-data class SnackbarColorsCustom(
-    val background: Color = Color.DarkGray,
-    val border: Color = Color.DarkGray,
-    val message: Color = Color.White,
-    val action: Color = Color.Blue,
-    val icon: Color = Color.White,
-    val closeIcon: Color = Color.White
-)
 
 @Composable
 fun TSnackbar(
@@ -59,7 +52,6 @@ fun TSnackbar(
     @DrawableRes closeIcon: Int? = null,
     isOnTop: Boolean = false,
     message: String,
-    colors: SnackbarColorsCustom = SnackbarColorsCustom(),
     onAction: (() -> Unit)? = null,
     onDismiss: (() -> Unit)? = null
 ) {
@@ -83,10 +75,9 @@ fun TSnackbar(
     Snackbar(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(padding)
-            .border(1.dp, color = colors.border, shape = MaterialTheme.shapes.large),
+            .padding(padding),
         shape = MaterialTheme.shapes.medium,
-        containerColor = colors.background,
+        containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(12.dp),
         content = {
             Box(
                 modifier = Modifier
@@ -104,7 +95,7 @@ fun TSnackbar(
                                 .size(35.dp),
                             painter = painterResource(id = icon),
                             contentDescription = "",
-                            tint = colors.icon
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                     Text(
@@ -113,12 +104,12 @@ fun TSnackbar(
                             .weight(0.7f),
                         text = message,
                         style = MaterialTheme.typography.labelLarge,
-                        color = colors.message
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     if (actionLabel != null) {
                         TTextButton(
                             colors = ButtonDefaults.textButtonColors(
-                                contentColor = colors.action
+                                contentColor = MaterialTheme.colorScheme.primary
                             ),
                             onClick = {
                                 if (onAction != null)
@@ -136,7 +127,7 @@ fun TSnackbar(
                                     onDismiss()
                             },
                             colors = IconButtonDefaults.iconButtonColors(
-                                contentColor = colors.closeIcon
+                                contentColor = MaterialTheme.colorScheme.onSurfaceVariant
                             ),
                             content = {
                                 Icon(
@@ -150,4 +141,24 @@ fun TSnackbar(
             }
         }
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SnackbarPreview() {
+    RabbitCloneTheme {
+        Surface {
+            TSnackbar(message = "defkjsdfldksf")
+        }
+    }
+}
+
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun SnackbarDarkPreview() {
+    RabbitCloneTheme {
+        Surface {
+            TSnackbar(message = "defkjsdfldksf")
+        }
+    }
 }

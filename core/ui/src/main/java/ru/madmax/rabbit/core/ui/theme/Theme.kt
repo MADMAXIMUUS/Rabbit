@@ -3,7 +3,11 @@ package ru.madmax.rabbit.core.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
@@ -13,65 +17,69 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Blue80,
-    onPrimary = Blue20,
-    primaryContainer = Blue30,
-    onPrimaryContainer = Blue90,
-    inversePrimary = Blue40,
-    secondary = BluePurple80,
-    onSecondary = BluePurple20,
-    secondaryContainer = BluePurple30,
-    onSecondaryContainer = BluePurple90,
-    tertiary = BlueViolet80,
-    onTertiary = BlueViolet20,
-    tertiaryContainer = BlueViolet30,
-    onTertiaryContainer = BlueViolet90,
-    error = Red80,
-    onError = Red20,
-    errorContainer = Red30,
-    onErrorContainer = Red90,
-    background = Grey10,
-    onBackground = Grey90,
-    surface = Grey10,
-    onSurface = Grey90,
-    inverseSurface = BlueViolet90,
-    inverseOnSurface = Grey10,
-    surfaceVariant = GreyVariant30,
-    onSurfaceVariant = GreyVariant80,
-    outline = GreyVariant60,
+    primary = Primary80,
+    onPrimary = Primary20,
+    primaryContainer = Primary30,
+    onPrimaryContainer = Primary90,
+    inversePrimary = Primary40,
+    secondary = Secondary80,
+    onSecondary = Secondary20,
+    secondaryContainer = Secondary30,
+    onSecondaryContainer = Secondary90,
+    tertiary = Tertiary80,
+    onTertiary = Tertiary20,
+    tertiaryContainer = Tertiary30,
+    onTertiaryContainer = Tertiary90,
+    error = Error80,
+    onError = Error20,
+    errorContainer = Error30,
+    onErrorContainer = Error90,
+    background = Neutral10,
+    onBackground = Neutral90,
+    surface = Neutral10,
+    onSurface = Neutral90,
+    inverseSurface = Neutral90,
+    inverseOnSurface = Neutral20,
+    surfaceVariant = NeutralVariant30,
+    onSurfaceVariant = NeutralVariant80,
+    outline = NeutralVariant60,
+    outlineVariant = NeutralVariant30,
+    scrim = Color.Black
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Blue40,
+    primary = Primary40,
     onPrimary = Color.White,
-    primaryContainer = Blue90,
-    onPrimaryContainer = Blue10,
-    inversePrimary = Blue80,
-    secondary = BluePurple40,
+    primaryContainer = Primary90,
+    onPrimaryContainer = Primary10,
+    inversePrimary = Primary80,
+    secondary = Secondary40,
     onSecondary = Color.White,
-    secondaryContainer = BluePurple90,
-    onSecondaryContainer = BluePurple10,
-    tertiary = BlueViolet40,
+    secondaryContainer = Secondary90,
+    onSecondaryContainer = Secondary10,
+    tertiary = Tertiary40,
     onTertiary = Color.White,
-    tertiaryContainer = BlueViolet90,
-    onTertiaryContainer = BlueViolet10,
-    error = Red40,
+    tertiaryContainer = Tertiary90,
+    onTertiaryContainer = Tertiary10,
+    error = Error40,
     onError = Color.White,
-    errorContainer = Red90,
-    onErrorContainer = Red10,
-    background = Grey99,
-    onBackground = Grey10,
-    surface = Grey99,
-    onSurface = Grey10,
-    inverseSurface = Grey10,
-    inverseOnSurface = Grey99,
-    surfaceVariant = GreyVariant90,
-    onSurfaceVariant = GreyVariant30,
-    outline = GreyVariant50,
+    errorContainer = Error90,
+    onErrorContainer = Error10,
+    background = Neutral99,
+    onBackground = Neutral10,
+    surface = Neutral99,
+    onSurface = Neutral10,
+    inverseSurface = Neutral20,
+    inverseOnSurface = Neutral95,
+    surfaceVariant = NeutralVariant90,
+    onSurfaceVariant = NeutralVariant30,
+    outline = NeutralVariant50,
+    outlineVariant = NeutralVariant80,
+    scrim = Color.Black,
 )
 
 @Composable
-fun ComposeTwitterCloneTheme(
+fun RabbitCloneTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit

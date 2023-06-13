@@ -1,8 +1,6 @@
-package ru.madmax.rabbit.feature.registry.ui.signUp
+package ru.madmax.rabbit.feature.registry.ui.logIn
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -12,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,47 +24,44 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.maxkeppeler.sheets.calendar.CalendarDialog
-import com.maxkeppeler.sheets.calendar.models.CalendarConfig
-import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import kotlinx.coroutines.flow.collectLatest
 import ru.madmax.rabbit.core.ui.R
 import ru.madmax.rabbit.core.ui.components.TButton
 import ru.madmax.rabbit.core.ui.components.TProfileTextFieldTrailing
 import ru.madmax.rabbit.core.ui.components.TTopAppBarNavigationOnly
 import ru.madmax.rabbit.core.ui.theme.RabbitCloneTheme
+import ru.madmax.rabbit.feature.registry.navigation.Routes
 import ru.madmax.rabbit.util.UiAction
 import ru.madmax.rabbit.util.asString
-import java.time.LocalDate
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-internal fun SignUpRoute(
+internal fun LogInRoute(
     snackbarHostState: SnackbarHostState,
-    viewModel: SignUpViewModel = hiltViewModel(),
+    viewModel: LogInViewModel = hiltViewModel(),
     navigateUp: () -> Unit,
-    navigateToNextScreen: (route: String) -> Unit
+    navigate: (route: String) -> Unit,
+    onAuthenticate: () -> Unit
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -84,7 +80,11 @@ internal fun SignUpRoute(
 
                 is UiAction.Navigate -> {
                     keyboardController?.hide()
-                    navigateToNextScreen(event.route)
+                    if (event.route == "") {
+                        onAuthenticate()
+                    } else {
+                        navigate(event.route)
+                    }
                 }
 
                 is UiAction.NavigateUp -> {
@@ -96,54 +96,50 @@ internal fun SignUpRoute(
         }
     }
 
-    SignUpScreen(
+    LogInScreen(
         state = state,
         navigateUp = navigateUp,
-        updateName = viewModel::updateNameValue,
         updateEmail = viewModel::updateEmailValue,
-        updateDate = viewModel::updateDateState,
         updatePassword = viewModel::updatePasswordState,
         togglePassword = viewModel::togglePassword,
-        onSignUp = viewModel::signUp
+        forgotPassword = viewModel::forgotPassword,
+        onLogIn = viewModel::logIn
     )
-}
 
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun SignUpScreen(
-    state: SignUpScreenState,
+private fun LogInScreen(
+    state: LogInScreenState,
     navigateUp: () -> Unit,
-    updateName: (String) -> Unit,
     updateEmail: (String) -> Unit,
-    updateDate: (LocalDate) -> Unit,
     updatePassword: (String) -> Unit,
     togglePassword: () -> Unit,
-    onSignUp: () -> Unit
+    forgotPassword: () -> Unit,
+    onLogIn: () -> Unit
 ) {
-    val focusRequester = remember { FocusRequester() }
+    val annotatedString = buildAnnotatedString {
+        val text = "Forgot password?"
+        append(text)
+        val start = 0
+        val end = text.length
 
-
-    val source = remember {
-        MutableInteractionSource()
+        addStyle(
+            SpanStyle(
+                color = MaterialTheme.colorScheme.primary,
+                textDecoration = TextDecoration.None
+            ),
+            start,
+            end
+        )
+        addStringAnnotation(
+            "forgot",
+            Routes.LOG_IN_SCREEN_ROUTE,
+            start,
+            end
+        )
     }
-
-    if (source.collectIsPressedAsState().value) {
-        state.calendarState.show()
-    }
-
-    CalendarDialog(
-        state = state.calendarState,
-        config = CalendarConfig(
-            monthSelection = true, yearSelection = true
-        ),
-        selection = CalendarSelection.Date(
-            selectedDate = state.localDateValue
-        ) { date ->
-            updateDate(date)
-            state.calendarState.hide()
-        },
-    )
 
     Column(
         modifier = Modifier
@@ -155,7 +151,7 @@ internal fun SignUpScreen(
             navigationIcon = painterResource(id = R.drawable.ic_back_arrow),
             navigationIconContentDescription = "",
             title = {
-                Text(text = stringResource(ru.madmax.rabbit.feature.registry.R.string.sign_up_main_title))
+                Text(text = "Welcome back")
             },
             onNavigationClick = {
                 navigateUp()
@@ -169,48 +165,6 @@ internal fun SignUpScreen(
             tint = MaterialTheme.colorScheme.primary,
             contentDescription = ""
         )
-        TProfileTextFieldTrailing(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp),
-            label = stringResource(ru.madmax.rabbit.feature.registry.R.string.name_label),
-            isError = state.isNameError,
-            trailingIcon = {
-                if (state.isNameError) {
-                    Icon(
-                        painter = painterResource(id = ru.madmax.rabbit.feature.registry.R.drawable.ic_error),
-                        contentDescription = ""
-                    )
-                } else if (state.nameValue.isNotEmpty()) {
-                    Icon(
-                        painter = painterResource(id = ru.madmax.rabbit.feature.registry.R.drawable.ic_check),
-                        contentDescription = ""
-                    )
-                }
-            },
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text, imeAction = ImeAction.Next
-            ),
-            value = state.nameValue,
-            supportingText = {
-                if (state.isNameError && state.nameError != null) {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = stringResource(id = state.nameError),
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                } else {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "${state.nameValue.length}/50",
-                        textAlign = TextAlign.End,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
-            },
-            onValueChange = {
-                updateName(it)
-            })
         TProfileTextFieldTrailing(
             modifier = Modifier
                 .fillMaxWidth()
@@ -252,51 +206,6 @@ internal fun SignUpScreen(
             onValueChange = {
                 updateEmail(it)
             }
-        )
-        TProfileTextFieldTrailing(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp)
-                .focusRequester(focusRequester)
-                .onFocusChanged {
-                    if (it.isFocused) {
-                        state.calendarState.show()
-                    }
-                },
-            label = stringResource(ru.madmax.rabbit.feature.registry.R.string.date_label),
-            value = state.dateValue,
-            interactionSource = source,
-            readOnly = true,
-            isError = state.isDateError,
-            trailingIcon = {
-                if (state.isDateError) {
-                    Icon(
-                        painter = painterResource(id = ru.madmax.rabbit.feature.registry.R.drawable.ic_error),
-                        contentDescription = ""
-                    )
-                } else if (state.dateValue.isNotEmpty()) {
-                    Icon(
-                        painter = painterResource(id = ru.madmax.rabbit.feature.registry.R.drawable.ic_check),
-                        contentDescription = ""
-                    )
-                }
-            },
-            supportingText = {
-                if (state.isDateError && state.dateError != null) {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = stringResource(id = state.dateError),
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                } else {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "",
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
-            },
-            onValueChange = {}
         )
         TProfileTextFieldTrailing(
             modifier = Modifier
@@ -354,10 +263,17 @@ internal fun SignUpScreen(
                         style = MaterialTheme.typography.bodyMedium
                     )
                 } else {
-                    Text(
+                    ClickableText(
                         modifier = Modifier.fillMaxWidth(),
-                        text = "",
-                        style = MaterialTheme.typography.bodyMedium
+                        text = annotatedString,
+                        style = MaterialTheme.typography.bodyMedium,
+                        onClick = { offset ->
+                            val forgot = annotatedString
+                                .getStringAnnotations("forgot", offset, offset).firstOrNull()?.item
+                            forgot?.let {
+                                forgotPassword()
+                            }
+                        }
                     )
                 }
             },
@@ -371,7 +287,7 @@ internal fun SignUpScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 40.dp),
             onClick = {
-                onSignUp()
+                onLogIn()
             },
             contentPadding = PaddingValues(
                 vertical = 15.dp
@@ -380,14 +296,15 @@ internal fun SignUpScreen(
             if (state.isLoading) {
                 CircularProgressIndicator(
                     color = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(23.dp),
                     strokeWidth = 3.dp,
                     strokeCap = StrokeCap.Round
                 )
             } else {
                 Text(
-                    text = stringResource(ru.madmax.rabbit.feature.registry.R.string.create_account),
-                    style = MaterialTheme.typography.labelLarge
+                    text = "Log in",
+                    style = MaterialTheme.typography.labelLarge,
+                    fontSize = 18.sp
                 )
             }
         }
@@ -397,37 +314,35 @@ internal fun SignUpScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun SignUpPreview() {
+fun LogInPreview() {
     RabbitCloneTheme {
         Surface {
-            SignUpScreen(
-                state = SignUpScreenState(),
+            LogInScreen(
+                state = LogInScreenState(),
                 navigateUp = {},
-                updateName = {},
                 updateEmail = {},
-                updateDate = {},
                 updatePassword = {},
                 togglePassword = {},
-                onSignUp = {}
+                forgotPassword = {},
+                onLogIn = {}
             )
         }
     }
 }
 
-@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun SignUpDarkPreview() {
+fun LogInDarkPreview() {
     RabbitCloneTheme {
         Surface {
-            SignUpScreen(
-                state = SignUpScreenState(),
+            LogInScreen(
+                state = LogInScreenState(),
                 navigateUp = {},
-                updateName = {},
                 updateEmail = {},
-                updateDate = {},
                 updatePassword = {},
                 togglePassword = {},
-                onSignUp = {}
+                forgotPassword = {},
+                onLogIn = {}
             )
         }
     }

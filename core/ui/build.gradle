@@ -39,6 +39,7 @@ android {
 dependencies {
     implementation libs.splash
 
+    implementation libs.coreKtx
     implementation libs.composeUi
     implementation libs.composePreview
     implementation libs.material3

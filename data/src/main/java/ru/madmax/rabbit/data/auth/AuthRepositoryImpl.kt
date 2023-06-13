@@ -77,7 +77,37 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun restorePassword(email: String) {
+    override suspend fun restorePassword(email: String): Resource<Unit> {
+        return try {
+            val response = remoteSource.restorePassword(email)
+            if (response.isSuccessful) {
+                Resource.Success(Unit)
+            } else {
+                response.message?.let { msg ->
+                    Resource.Error(UiText.PlainText(msg))
+                } ?: Resource.Error(UiText.StringResource(R.string.unknown_error))
+            }
+        } catch (e: IOException) {
+            Resource.Error(message = UiText.StringResource(R.string.server_connection_error))
+        } catch (e: HttpException) {
+            Resource.Error(message = UiText.StringResource(R.string.something_went_wrong))
+        }
+    }
 
+    override suspend fun checkCode(code: String): Resource<Unit> {
+        return try {
+            val response = remoteSource.checkCode(code)
+            if (response.isSuccessful) {
+                Resource.Success(Unit)
+            } else {
+                response.message?.let { msg ->
+                    Resource.Error(UiText.PlainText(msg))
+                } ?: Resource.Error(UiText.StringResource(R.string.unknown_error))
+            }
+        } catch (e: IOException) {
+            Resource.Error(message = UiText.StringResource(R.string.server_connection_error))
+        } catch (e: HttpException) {
+            Resource.Error(message = UiText.StringResource(R.string.something_went_wrong))
+        }
     }
 }

@@ -13,7 +13,7 @@
     <string name="sign_up_main_title">Create your account</string>
     <string name="set_profile_picture_title">Pick a profile picture</string>
     <string name="name_label">Name</string>
-    <string name="email_label">Email address</string>
+    <string name="email_label">Email</string>
     <string name="date_label">Date of birth</string>
     <string name="password_label">Password</string>
     <string name="next_button_label">Next</string>

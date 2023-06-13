@@ -85,7 +85,7 @@ fun TTopAppBarNavigationOnly(
 ) {
     CenterAlignedTopAppBar(
         modifier = modifier,
-        title = { title() },
+        title = title,
         navigationIcon = {
             IconButton(onClick = onNavigationClick) {
                 Icon(

@@ -174,7 +174,7 @@ fun TProfileTextField(
     value: String,
     interactionSource: MutableInteractionSource = MutableInteractionSource(),
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors(),
-    prefix: (@Composable () -> Unit)? = null,
+    prefix: String = "",
     supportingText: (@Composable () -> Unit)? = null,
     isError: Boolean = false,
     singleLine: Boolean = true,
@@ -196,7 +196,9 @@ fun TProfileTextField(
         visualTransformation = visualTransformation,
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
-        prefix = prefix,
+        prefix = {
+            Text(text = prefix)
+        },
         label = {
             Text(text = label)
         },
@@ -249,7 +251,6 @@ fun TextFieldPreview() {
     TProfileTextField(
         modifier = Modifier.padding(40.dp),
         label = "Label",
-        prefix = { Text("@") },
         value = "Value",
         onValueChange = {}
     )

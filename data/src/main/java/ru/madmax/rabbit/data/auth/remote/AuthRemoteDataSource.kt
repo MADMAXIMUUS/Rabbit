@@ -17,6 +17,9 @@ interface AuthRemoteDataSource {
     ): BasicApiResponse<AuthResponse>
 
     @POST("auth/resetPassword")
-    suspend fun forgetPassword(): BasicApiResponse<Boolean>
+    suspend fun restorePassword(email: String): BasicApiResponse<Boolean>
+
+    @POST("auth/code")
+    suspend fun checkCode(code: String): BasicApiResponse<Boolean>
 
 }

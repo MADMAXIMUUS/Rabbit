@@ -1,5 +1,6 @@
 package ru.madmax.rabbit.feature.registry.ui.setProfilePicture
 
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -7,7 +8,6 @@ import android.os.Build
 import android.provider.MediaStore
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -65,6 +65,7 @@ import ru.madmax.rabbit.core.ui.components.TTextButton
 import ru.madmax.rabbit.core.ui.components.TTopAppBar
 import ru.madmax.rabbit.core.ui.components.dashedBorder
 import ru.madmax.rabbit.core.ui.components.dialogs.CropImageDialog
+import ru.madmax.rabbit.core.ui.theme.RabbitCloneTheme
 import ru.madmax.rabbit.util.FileUtils
 import ru.madmax.rabbit.util.TwitterCloneFileProvider
 import ru.madmax.rabbit.util.UiAction
@@ -261,7 +262,8 @@ fun SetProfileImageScreen(
                 IconButton(
                     modifier = Modifier
                         .size(200.dp)
-                        .dashedBorder(4.dp, MaterialTheme.colorScheme.primary, 30.dp), onClick = {
+                        .dashedBorder(4.dp, MaterialTheme.colorScheme.primary, 30.dp),
+                    onClick = {
                         showDialog()
                     }
                 ) {
@@ -277,7 +279,6 @@ fun SetProfileImageScreen(
                         Text(
                             text = stringResource(ru.madmax.rabbit.feature.registry.R.string.upload),
                             style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary
                         )
                     }
@@ -317,10 +318,6 @@ fun SetProfileImageScreen(
                         .padding(start = 10.dp),
                     colors = ButtonDefaults.outlinedButtonColors(
                         contentColor = MaterialTheme.colorScheme.secondary
-                    ),
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = MaterialTheme.colorScheme.secondary
                     ),
                     onClick = {
                         scip()
@@ -366,13 +363,35 @@ fun SetProfileImageScreen(
 @Preview(showBackground = true)
 @Composable
 fun ImagePreview() {
-    SetProfileImageScreen(
-        state = SetProfilePictureScreenState(),
-        showDialog = {},
-        hideDialog = {},
-        setPhoto = {},
-        setCroppedPhoto = {},
-        scip = {},
-        next = {}
-    )
+    RabbitCloneTheme {
+        Surface {
+            SetProfileImageScreen(
+                state = SetProfilePictureScreenState(),
+                showDialog = {},
+                hideDialog = {},
+                setPhoto = {},
+                setCroppedPhoto = {},
+                scip = {},
+                next = {}
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun ImageDarkPreview() {
+    RabbitCloneTheme {
+        Surface {
+            SetProfileImageScreen(
+                state = SetProfilePictureScreenState(),
+                showDialog = {},
+                hideDialog = {},
+                setPhoto = {},
+                setCroppedPhoto = {},
+                scip = {},
+                next = {}
+            )
+        }
+    }
 }

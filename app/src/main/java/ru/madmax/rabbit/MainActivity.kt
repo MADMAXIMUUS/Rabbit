@@ -25,7 +25,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import ru.madmax.rabbit.core.ui.theme.ComposeTwitterCloneTheme
+import ru.madmax.rabbit.core.ui.theme.RabbitCloneTheme
 import ru.madmax.rabbit.ui.RabbitApp
 
 @AndroidEntryPoint
@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
                 onDispose {}
             }
 
-            ComposeTwitterCloneTheme(dynamicColor = false) {
+            RabbitCloneTheme(dynamicColor = false) {
                 Surface(
                     modifier = Modifier
                         .fillMaxSize(),

@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace 'ru.madmax.rabbit.data'
+    namespace 'ru.rabbit.data'
     compileSdk 33
 
     defaultConfig {

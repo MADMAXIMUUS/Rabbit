@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.madmax.rabbit'
+    namespace 'ru.rabbit.app'
     compileSdk 33
 
     defaultConfig {
-        applicationId "ru.madmax.rabbit"
+        applicationId "ru.rabbit.app"
         minSdk 26
         targetSdk 33
         versionCode 1
@@ -59,8 +59,8 @@ dependencies {
     implementation libs.material3
 
     implementation libs.composeNavigation
+    api project(':persian')
 
-    api project(":core:ui")
     api project(':feature:auth')
 
     implementation libs.accompanistUiController

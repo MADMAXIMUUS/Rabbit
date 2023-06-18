@@ -14,8 +14,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Rabbit"
 include ':app'
+include ':app-persian-showcase'
 include ':data'
-include ':core:ui'
+include ':persian'
 include ':core:util'
 include ':core:models'
 include ':feature:feed'

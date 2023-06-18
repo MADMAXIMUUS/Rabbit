@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'ru.madmax.rabbit.util'
+    namespace 'ru.rabbit.core.util'
     compileSdk 33
 
     defaultConfig {

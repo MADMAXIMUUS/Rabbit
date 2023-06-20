@@ -14,7 +14,25 @@ data class LinearProgressBarSizes(
 object PersianLinearProgressBarSize {
 
     @Composable
-    fun Small(
+    fun large(
+        strokeSize: Dp = 4.dp
+    ) = remember(strokeSize) {
+        LinearProgressBarSizes(
+            strokeSize = strokeSize
+        )
+    }
+
+    @Composable
+    fun medium(
+        strokeSize: Dp = 3.dp
+    ) = remember(strokeSize) {
+        LinearProgressBarSizes(
+            strokeSize = strokeSize
+        )
+    }
+
+    @Composable
+    fun small(
         strokeSize: Dp = 2.dp
     ) = remember(strokeSize) {
         LinearProgressBarSizes(

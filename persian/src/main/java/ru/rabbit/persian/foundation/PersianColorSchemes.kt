@@ -43,7 +43,7 @@ import ru.rabbit.persian.foundation.Tertiary40
 import ru.rabbit.persian.foundation.Tertiary80
 import ru.rabbit.persian.foundation.Tertiary90
 
-const val PersianStatesDisabled = .38f
+const val PersianStatesDisabled = .12f
 
 val LightColorScheme = lightColorScheme(
     primary = Primary40,

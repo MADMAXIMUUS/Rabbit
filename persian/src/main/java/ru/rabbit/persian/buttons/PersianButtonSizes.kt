@@ -20,11 +20,15 @@ data class ButtonSizes(
 object PersianButtonSizes {
 
     @Composable
-    fun Large(
+    fun large(
+        loading: Boolean = false,
         fontSize: TextStyle = MaterialTheme.typography.titleMedium,
         height: Dp = 52.dp,
         iconSize: Dp = 24.dp,
-        contentPadding: PaddingValues = PaddingValues(horizontal = 24.dp, vertical = 16.dp)
+        contentPadding: PaddingValues = if (loading) PaddingValues(
+            horizontal = 24.dp,
+            vertical = 4.dp
+        ) else PaddingValues(horizontal = 24.dp, vertical = 16.dp)
     ): ButtonSizes = remember(
         fontSize,
         height,
@@ -40,11 +44,15 @@ object PersianButtonSizes {
     }
 
     @Composable
-    fun Medium(
+    fun medium(
+        loading: Boolean = false,
         fontSize: TextStyle = MaterialTheme.typography.labelLarge,
         height: Dp = 44.dp,
         iconSize: Dp = 20.dp,
-        contentPadding: PaddingValues = PaddingValues(horizontal = 20.dp, vertical = 12.dp)
+        contentPadding: PaddingValues = if (loading) PaddingValues(
+        horizontal = 20.dp,
+        vertical = 4.dp
+    ) else PaddingValues(horizontal = 20.dp, vertical = 12.dp)
     ): ButtonSizes = remember(
         fontSize,
         height,
@@ -60,11 +68,15 @@ object PersianButtonSizes {
     }
 
     @Composable
-    fun Small(
+    fun small(
+        loading: Boolean = false,
         fontSize: TextStyle = MaterialTheme.typography.titleSmall,
         height: Dp = 36.dp,
         iconSize: Dp = 18.dp,
-        contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+        contentPadding: PaddingValues = if (loading) PaddingValues(
+            horizontal = 16.dp,
+            vertical = 4.dp
+        ) else PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     ): ButtonSizes = remember(
         fontSize,
         height,

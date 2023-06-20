@@ -4,8 +4,8 @@
     <application>
 
         <provider
-            android:name=".TwitterCloneFileProvider"
-            android:authorities="ru.madmax.rabbit.util.fileProvider"
+            android:name=".RabbitFileProvider"
+            android:authorities="ru.rabbit.core.util.RabbitFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

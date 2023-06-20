@@ -1,105 +1,185 @@
 package ru.rabbit.persian.buttons
 
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
+import ru.rabbit.persian.foundation.PersianComponentStyle
 import ru.rabbit.persian.foundation.PersianStatesDisabled
+
+@Immutable
+data class ButtonColors(
+    val contentColor: Color,
+    val containerColor: Color,
+    val disabledContentColor: Color,
+    val disabledContainerColor: Color
+) {
+    fun contentColor(enabled: Boolean) = if (enabled) contentColor else disabledContentColor
+
+    fun containerColor(enabled: Boolean) = if (enabled) containerColor else disabledContainerColor
+}
 
 object PersianButtonColors {
 
     @Composable
-    fun Primary(
-        style: PersianButtonStyle,
+    fun primary(
+        style: PersianComponentStyle,
         containerColor: Color = MaterialTheme.colorScheme.primary,
         contentColor: Color = MaterialTheme.colorScheme.onPrimary,
-        disabledContainerColor: Color = MaterialTheme.colorScheme.primary
+        disabledContainerColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
-        disabledContentColor: Color = MaterialTheme.colorScheme.primary
+        disabledContentColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
     ): ButtonColors = when (style) {
-        PersianButtonStyle.Fill -> ButtonDefaults.buttonColors(
+        PersianComponentStyle.Fill -> ButtonColors(
             containerColor = containerColor,
             contentColor = contentColor,
             disabledContainerColor = disabledContainerColor,
             disabledContentColor = disabledContentColor
         )
 
-        PersianButtonStyle.Outlined -> ButtonDefaults.outlinedButtonColors(
+        PersianComponentStyle.Outlined -> ButtonColors(
             containerColor = Color.Transparent,
             contentColor = containerColor,
             disabledContainerColor = Color.Transparent,
             disabledContentColor = disabledContainerColor
         )
 
-        PersianButtonStyle.Text -> ButtonDefaults.textButtonColors(
-            containerColor = containerColor,
-            contentColor = contentColor,
-            disabledContainerColor = disabledContainerColor,
-            disabledContentColor = disabledContentColor
+        PersianComponentStyle.Text -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
         )
     }
 
 
     @Composable
-    fun Secondary(
-        containerColor: Color = MaterialTheme.colorScheme.primary,
-        contentColor: Color = MaterialTheme.colorScheme.onPrimary,
+    fun secondary(
+        style: PersianComponentStyle,
+        containerColor: Color = MaterialTheme.colorScheme.secondary,
+        contentColor: Color = MaterialTheme.colorScheme.onSecondary,
         disabledContainerColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
         disabledContentColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
-    ): ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = containerColor,
-        contentColor = contentColor,
-        disabledContainerColor = disabledContainerColor,
-        disabledContentColor = disabledContentColor
-    )
+    ): ButtonColors = when (style) {
+        PersianComponentStyle.Fill -> ButtonColors(
+            containerColor = containerColor,
+            contentColor = contentColor,
+            disabledContainerColor = disabledContainerColor,
+            disabledContentColor = disabledContentColor
+        )
+
+        PersianComponentStyle.Outlined -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
+        )
+
+        PersianComponentStyle.Text -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
+        )
+    }
 
     @Composable
-    fun Tertiary(
-        containerColor: Color = MaterialTheme.colorScheme.primary,
-        contentColor: Color = MaterialTheme.colorScheme.onPrimary,
+    fun tertiary(
+        style: PersianComponentStyle,
+        containerColor: Color = MaterialTheme.colorScheme.tertiary,
+        contentColor: Color = MaterialTheme.colorScheme.onTertiary,
         disabledContainerColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
         disabledContentColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
-    ): ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = containerColor,
-        contentColor = contentColor,
-        disabledContainerColor = disabledContainerColor,
-        disabledContentColor = disabledContentColor
-    )
+    ): ButtonColors = when (style) {
+        PersianComponentStyle.Fill -> ButtonColors(
+            containerColor = containerColor,
+            contentColor = contentColor,
+            disabledContainerColor = disabledContainerColor,
+            disabledContentColor = disabledContentColor
+        )
+
+        PersianComponentStyle.Outlined -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
+        )
+
+        PersianComponentStyle.Text -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
+        )
+    }
 
     @Composable
-    fun Negative(
-        containerColor: Color = MaterialTheme.colorScheme.primary,
-        contentColor: Color = MaterialTheme.colorScheme.onPrimary,
+    fun negative(
+        style: PersianComponentStyle,
+        containerColor: Color = MaterialTheme.colorScheme.error,
+        contentColor: Color = MaterialTheme.colorScheme.onError,
         disabledContainerColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
         disabledContentColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
-    ): ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = containerColor,
-        contentColor = contentColor,
-        disabledContainerColor = disabledContainerColor,
-        disabledContentColor = disabledContentColor
-    )
+    ): ButtonColors = when (style) {
+        PersianComponentStyle.Fill -> ButtonColors(
+            containerColor = containerColor,
+            contentColor = contentColor,
+            disabledContainerColor = disabledContainerColor,
+            disabledContentColor = disabledContentColor
+        )
+
+        PersianComponentStyle.Outlined -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
+        )
+
+        PersianComponentStyle.Text -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
+        )
+    }
 
     @Composable
-    fun Neutral(
-        containerColor: Color = MaterialTheme.colorScheme.primary,
-        contentColor: Color = MaterialTheme.colorScheme.onPrimary,
+    fun neutral(
+        style: PersianComponentStyle,
+        containerColor: Color = MaterialTheme.colorScheme.inverseSurface,
+        contentColor: Color = MaterialTheme.colorScheme.inverseOnSurface,
         disabledContainerColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
         disabledContentColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianStatesDisabled),
-    ): ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = containerColor,
-        contentColor = contentColor,
-        disabledContainerColor = disabledContainerColor,
-        disabledContentColor = disabledContentColor
-    )
+    ): ButtonColors = when (style) {
+        PersianComponentStyle.Fill -> ButtonColors(
+            containerColor = containerColor,
+            contentColor = contentColor,
+            disabledContainerColor = disabledContainerColor,
+            disabledContentColor = disabledContentColor
+        )
+
+        PersianComponentStyle.Outlined -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
+        )
+
+        PersianComponentStyle.Text -> ButtonColors(
+            containerColor = Color.Transparent,
+            contentColor = containerColor,
+            disabledContainerColor = Color.Transparent,
+            disabledContentColor = disabledContainerColor
+        )
+    }
 
 }

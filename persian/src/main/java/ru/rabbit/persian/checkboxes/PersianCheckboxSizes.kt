@@ -21,12 +21,10 @@ object PersianCheckboxSizes {
 
     @Composable
     fun small(
-        toggleSide: ToggleSide,
         toggleSize: Dp = 48.dp,
         textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
         contentPadding: PaddingValues = PaddingValues(
-            start = if (toggleSide == ToggleSide.RIGHT) MaterialTheme.spacing.medium else 0.dp,
-            end = if (toggleSide == ToggleSide.LEFT) MaterialTheme.spacing.medium else 0.dp
+            end = MaterialTheme.spacing.medium
         )
     ) = remember(toggleSize, textStyle, contentPadding)
     {

@@ -5,7 +5,7 @@ import androidx.compose.material3.CheckboxColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
-object PersianCheckBoxToggle {
+object PersianCheckboxToggle {
 
     @Composable
     fun Primary(

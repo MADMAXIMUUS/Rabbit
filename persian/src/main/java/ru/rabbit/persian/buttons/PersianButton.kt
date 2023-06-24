@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -341,6 +342,7 @@ private fun PersianFillButtonImpl(
     Button(
         enabled = enabled,
         modifier = modifier
+            .widthIn(min = size.minWidth)
             .height(size.height),
         colors = ButtonDefaults
             .buttonColors(
@@ -413,7 +415,8 @@ private fun PersianOutlineButtonImpl(
     OutlinedButton(
         enabled = enabled,
         modifier = modifier
-            .height(size.height),
+            .height(size.height)
+            .widthIn(min = size.minWidth),
         colors = ButtonDefaults
             .outlinedButtonColors(
                 contentColor = colors.contentColor,
@@ -486,6 +489,7 @@ private fun PersianTextButtonImpl(
     TextButton(
         enabled = enabled,
         modifier = modifier
+            .widthIn(min = size.minWidth)
             .height(size.height),
         colors = ButtonDefaults
             .textButtonColors(

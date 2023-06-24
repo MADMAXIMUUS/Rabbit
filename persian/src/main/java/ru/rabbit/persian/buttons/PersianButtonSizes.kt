@@ -13,8 +13,9 @@ import androidx.compose.ui.unit.dp
 data class ButtonSizes(
     val textStyle: TextStyle,
     val height: Dp,
+    val minWidth: Dp,
     val iconSize: Dp,
-    val contentPadding: PaddingValues
+    val contentPadding: PaddingValues,
 )
 
 object PersianButtonSizes {
@@ -24,6 +25,7 @@ object PersianButtonSizes {
         loading: Boolean = false,
         fontSize: TextStyle = MaterialTheme.typography.titleMedium,
         height: Dp = 52.dp,
+        minWidth: Dp = 112.dp,
         iconSize: Dp = 24.dp,
         contentPadding: PaddingValues = if (loading) PaddingValues(
             horizontal = 24.dp,
@@ -32,12 +34,14 @@ object PersianButtonSizes {
     ): ButtonSizes = remember(
         fontSize,
         height,
+        minWidth,
         iconSize,
         contentPadding
     ) {
         ButtonSizes(
             textStyle = fontSize,
             height = height,
+            minWidth = minWidth,
             iconSize = iconSize,
             contentPadding = contentPadding
         )
@@ -48,6 +52,7 @@ object PersianButtonSizes {
         loading: Boolean = false,
         fontSize: TextStyle = MaterialTheme.typography.labelLarge,
         height: Dp = 44.dp,
+        minWidth: Dp = 98.dp,
         iconSize: Dp = 20.dp,
         contentPadding: PaddingValues = if (loading) PaddingValues(
         horizontal = 20.dp,
@@ -56,12 +61,14 @@ object PersianButtonSizes {
     ): ButtonSizes = remember(
         fontSize,
         height,
+        minWidth,
         iconSize,
         contentPadding
     ) {
         ButtonSizes(
             textStyle = fontSize,
             height = height,
+            minWidth = minWidth,
             iconSize = iconSize,
             contentPadding = contentPadding
         )
@@ -72,6 +79,7 @@ object PersianButtonSizes {
         loading: Boolean = false,
         fontSize: TextStyle = MaterialTheme.typography.titleSmall,
         height: Dp = 36.dp,
+        minWidth: Dp = 90.dp,
         iconSize: Dp = 18.dp,
         contentPadding: PaddingValues = if (loading) PaddingValues(
             horizontal = 16.dp,
@@ -80,12 +88,14 @@ object PersianButtonSizes {
     ): ButtonSizes = remember(
         fontSize,
         height,
+        minWidth,
         iconSize,
         contentPadding
     ) {
         ButtonSizes(
             textStyle = fontSize,
             height = height,
+            minWidth = minWidth,
             iconSize = iconSize,
             contentPadding = contentPadding
         )

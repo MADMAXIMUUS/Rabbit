@@ -9,6 +9,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
@@ -75,11 +76,24 @@ object PersianProgressBar {
         modifier: Modifier = Modifier,
         colors: ProgressBarColors = PersianProgressBarColors.primary(),
         sizes: CircularProgressBarSizes = PersianCircularProgressBarSize.medium(),
+        content: (@Composable PersianProgressBarContent.() -> Unit)? = null
     ) {
         Box(
             modifier = modifier
                 .size(size = sizes.boxSize),
         ) {
+            if (content != null) {
+                CompositionLocalProvider(
+                    LocalCircularProgress provides progress
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .padding(sizes.strokeSize + sizes.contentPadding)
+                    ) {
+                        PersianProgressBarContent.content()
+                    }
+                }
+            }
             CircularProgressIndicator(
                 progress = progress,
                 modifier = Modifier
@@ -126,7 +140,7 @@ fun CircularProgressBarPreview() {
     PersianTheme {
         Surface {
             PersianProgressBar.Circular(
-                sizes = PersianCircularProgressBarSize.large()
+                sizes = PersianCircularProgressBarSize.small()
             )
         }
     }
@@ -138,8 +152,9 @@ fun CircularProgressProgressBarPreview() {
     PersianTheme {
         Surface {
             PersianProgressBar.Circular(
-                progress = 0.5f,
-                sizes = PersianCircularProgressBarSize.large()
+                progress = 0.8f,
+                sizes = PersianCircularProgressBarSize.medium(),
+                content = { Text() }
             )
         }
     }

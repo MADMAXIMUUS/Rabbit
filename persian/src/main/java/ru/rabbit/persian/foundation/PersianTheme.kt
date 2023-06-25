@@ -46,7 +46,8 @@ fun PersianTheme(
 
     CompositionLocalProvider(
         LocalPersianSpacing provides MaterialTheme.spacing,
-        LocalPersianIcons provides MaterialTheme.icons
+        LocalPersianIcons provides MaterialTheme.icons,
+        LocalPersianElevation provides MaterialTheme.elevation
     ) {
         MaterialTheme(
             colorScheme = colorScheme,

@@ -42,12 +42,12 @@ object PersianButton {
         iconSide: IconSide = IconSide.LEFT,
         enabled: Boolean = true,
         loading: Boolean = false,
-        style: PersianComponentStyle = PersianComponentStyle.Fill,
+        style: PersianComponentStyle = PersianComponentStyle.FILL,
         colors: ButtonColors = PersianButtonColors.primary(style),
         size: ButtonSizes = PersianButtonSizes.medium(loading),
         onClick: () -> Unit
     ) = when (style) {
-        PersianComponentStyle.Fill -> {
+        PersianComponentStyle.FILL -> {
             PersianFillButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -61,7 +61,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Outlined -> {
+        PersianComponentStyle.OUTLINED -> {
             PersianOutlineButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -75,7 +75,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Text -> {
+        PersianComponentStyle.STANDARD -> {
             PersianTextButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -88,6 +88,8 @@ object PersianButton {
                 onClick = onClick
             )
         }
+
+        else -> {}
     }
 
     @Composable
@@ -98,12 +100,12 @@ object PersianButton {
         iconSide: IconSide = IconSide.LEFT,
         enabled: Boolean = true,
         loading: Boolean = false,
-        style: PersianComponentStyle = PersianComponentStyle.Fill,
+        style: PersianComponentStyle = PersianComponentStyle.FILL,
         colors: ButtonColors = PersianButtonColors.secondary(style),
         size: ButtonSizes = PersianButtonSizes.medium(loading),
         onClick: () -> Unit
     ) = when (style) {
-        PersianComponentStyle.Fill -> {
+        PersianComponentStyle.FILL -> {
             PersianFillButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -117,7 +119,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Outlined -> {
+        PersianComponentStyle.OUTLINED -> {
             PersianOutlineButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -131,7 +133,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Text -> {
+        PersianComponentStyle.STANDARD -> {
             PersianTextButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -144,6 +146,8 @@ object PersianButton {
                 onClick = onClick
             )
         }
+
+        else -> {}
     }
 
     @Composable
@@ -154,12 +158,12 @@ object PersianButton {
         iconSide: IconSide = IconSide.LEFT,
         enabled: Boolean = true,
         loading: Boolean = false,
-        style: PersianComponentStyle = PersianComponentStyle.Fill,
+        style: PersianComponentStyle = PersianComponentStyle.FILL,
         colors: ButtonColors = PersianButtonColors.tertiary(style),
         size: ButtonSizes = PersianButtonSizes.medium(loading),
         onClick: () -> Unit
     ) = when (style) {
-        PersianComponentStyle.Fill -> {
+        PersianComponentStyle.FILL -> {
             PersianFillButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -173,7 +177,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Outlined -> {
+        PersianComponentStyle.OUTLINED -> {
             PersianOutlineButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -187,7 +191,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Text -> {
+        PersianComponentStyle.STANDARD -> {
             PersianTextButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -200,6 +204,8 @@ object PersianButton {
                 onClick = onClick
             )
         }
+
+        else -> {}
     }
 
     @Composable
@@ -210,12 +216,12 @@ object PersianButton {
         iconSide: IconSide = IconSide.LEFT,
         enabled: Boolean = true,
         loading: Boolean = false,
-        style: PersianComponentStyle = PersianComponentStyle.Fill,
+        style: PersianComponentStyle = PersianComponentStyle.FILL,
         colors: ButtonColors = PersianButtonColors.negative(style),
         size: ButtonSizes = PersianButtonSizes.medium(loading),
         onClick: () -> Unit
     ) = when (style) {
-        PersianComponentStyle.Fill -> {
+        PersianComponentStyle.FILL -> {
             PersianFillButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -229,7 +235,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Outlined -> {
+        PersianComponentStyle.OUTLINED -> {
             PersianOutlineButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -243,7 +249,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Text -> {
+        PersianComponentStyle.STANDARD -> {
             PersianTextButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -256,6 +262,8 @@ object PersianButton {
                 onClick = onClick
             )
         }
+
+        else -> {}
     }
 
     @Composable
@@ -266,12 +274,12 @@ object PersianButton {
         iconSide: IconSide = IconSide.LEFT,
         enabled: Boolean = true,
         loading: Boolean = false,
-        style: PersianComponentStyle = PersianComponentStyle.Fill,
+        style: PersianComponentStyle = PersianComponentStyle.FILL,
         colors: ButtonColors = PersianButtonColors.neutral(style),
         size: ButtonSizes = PersianButtonSizes.medium(loading),
         onClick: () -> Unit
     ) = when (style) {
-        PersianComponentStyle.Fill -> {
+        PersianComponentStyle.FILL -> {
             PersianFillButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -285,7 +293,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Outlined -> {
+        PersianComponentStyle.OUTLINED -> {
             PersianOutlineButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -299,7 +307,7 @@ object PersianButton {
             )
         }
 
-        PersianComponentStyle.Text -> {
+        PersianComponentStyle.STANDARD -> {
             PersianTextButtonImpl(
                 modifier = modifier,
                 text = text,
@@ -312,6 +320,8 @@ object PersianButton {
                 onClick = onClick
             )
         }
+
+        else -> {}
     }
 }
 
@@ -554,7 +564,7 @@ fun PrimaryFillButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Fill,
+                    style = PersianComponentStyle.FILL,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -564,7 +574,7 @@ fun PrimaryFillButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Fill,
+                    style = PersianComponentStyle.FILL,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -574,7 +584,7 @@ fun PrimaryFillButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Fill,
+                    style = PersianComponentStyle.FILL,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -584,7 +594,7 @@ fun PrimaryFillButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Fill,
+                    style = PersianComponentStyle.FILL,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -594,7 +604,7 @@ fun PrimaryFillButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Fill,
+                    style = PersianComponentStyle.FILL,
                     onClick = {}
                 )
             }
@@ -618,7 +628,7 @@ fun PrimaryOutlineButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Outlined,
+                    style = PersianComponentStyle.OUTLINED,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -628,7 +638,7 @@ fun PrimaryOutlineButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Outlined,
+                    style = PersianComponentStyle.OUTLINED,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -638,7 +648,7 @@ fun PrimaryOutlineButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Outlined,
+                    style = PersianComponentStyle.OUTLINED,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -648,7 +658,7 @@ fun PrimaryOutlineButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Outlined,
+                    style = PersianComponentStyle.OUTLINED,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -658,7 +668,7 @@ fun PrimaryOutlineButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Outlined,
+                    style = PersianComponentStyle.OUTLINED,
                     onClick = {}
                 )
             }
@@ -682,7 +692,7 @@ fun PrimaryTextButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Text,
+                    style = PersianComponentStyle.STANDARD,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -692,7 +702,7 @@ fun PrimaryTextButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Text,
+                    style = PersianComponentStyle.STANDARD,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -702,7 +712,7 @@ fun PrimaryTextButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Text,
+                    style = PersianComponentStyle.STANDARD,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -712,7 +722,7 @@ fun PrimaryTextButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Text,
+                    style = PersianComponentStyle.STANDARD,
                     onClick = {}
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -722,7 +732,7 @@ fun PrimaryTextButton() {
                     text = "Persian",
                     loading = isLoading,
                     size = PersianButtonSizes.large(isLoading),
-                    style = PersianComponentStyle.Text,
+                    style = PersianComponentStyle.STANDARD,
                     onClick = {}
                 )
             }

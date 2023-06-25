@@ -1,3 +1,3 @@
 package ru.rabbit.persian.foundation
 
-enum class PersianComponentStyle { Fill, Outlined, Text }
+enum class PersianComponentStyle { FILL, OUTLINED, STANDARD, TONAL}

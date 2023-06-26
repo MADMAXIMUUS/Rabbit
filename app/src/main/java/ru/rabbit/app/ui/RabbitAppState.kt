@@ -17,17 +17,15 @@ import kotlinx.coroutines.CoroutineScope
 @Composable
 fun rememberAppState(
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
-    drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberAnimatedNavController()
-) = remember(snackbarHostState, drawerState, navController) {
-    AppState(snackbarHostState, drawerState, coroutineScope, navController)
+) = remember(snackbarHostState, navController) {
+    AppState(snackbarHostState, coroutineScope, navController)
 }
 
 @Stable
 class AppState(
     val snackbarHostState: SnackbarHostState,
-    val drawerState: DrawerState,
     val coroutineScope: CoroutineScope,
     val navController: NavHostController
 )

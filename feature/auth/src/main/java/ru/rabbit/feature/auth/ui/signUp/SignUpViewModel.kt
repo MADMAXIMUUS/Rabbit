@@ -1,17 +1,22 @@
 package ru.rabbit.feature.auth.ui.signUp
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import ru.rabbit.data.auth.AuthRepository
 import ru.rabbit.feature.auth.R
 import ru.rabbit.feature.auth.util.ValidateEmail
 import ru.rabbit.feature.auth.util.ValidatePassword
 import ru.rabbit.core.util.UiAction
+import ru.rabbit.core.util.UiText
+import ru.rabbit.data.util.Resource
+import ru.rabbit.feature.auth.navigation.Routes
 import ru.rabbit.feature.auth.util.toCalendarDate
 import java.time.LocalDate
 import java.time.ZoneId
@@ -112,7 +117,7 @@ class SignUpViewModel @Inject constructor(
                 .atStartOfDay(ZoneId.systemDefault())
                 .toInstant()
                 .toEpochMilli()
-            /*viewModelScope.launch {
+            viewModelScope.launch {
                 val response = repository.signUp(
                     uiState.value.nameValue,
                     uiState.value.emailValue,
@@ -144,7 +149,7 @@ class SignUpViewModel @Inject constructor(
                         )
                     }
                 }
-            }*/
+            }
         }
     }
 }

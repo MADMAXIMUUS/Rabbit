@@ -6,13 +6,11 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
@@ -20,11 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import ru.rabbit.feature.auth.navigation.AUTH_GRAPH_ROUTE_PATTERN
 import ru.rabbit.feature.auth.navigation.authGraph
 import ru.rabbit.feature.auth.navigation.navigateToAuthGraph
+import ru.rabbit.persian.snackbar.PersianSnackbar
+import ru.rabbit.persian.snackbar.PersianSnackbarVisuals
 
 @OptIn(
     ExperimentalAnimationApi::class,
@@ -42,26 +41,17 @@ fun RabbitApp(
         containerColor = Color.Transparent,
         snackbarHost = {
             SnackbarHost(hostState = appState.snackbarHostState) { snackbarData ->
-                /*val customVisuals = snackbarData.visuals as? SnackbarVisualsCustom
+                val customVisuals = snackbarData.visuals as? PersianSnackbarVisuals
                 if (customVisuals != null) {
-                    TSnackbar(
-                        icon = customVisuals.icon,
-                        message = customVisuals.message,
-                        colors = customVisuals.colors,
-                        closeIcon = customVisuals.closeIcon,
-                        actionLabel = customVisuals.actionLabel,
-                        isOnTop = customVisuals.isOnTop
+                    PersianSnackbar.Primary(
+                        text = customVisuals.message,
+                        left = customVisuals.left,
+                        right = customVisuals.right,
+                        showOnTop = customVisuals.showOnTop,
                     )
                 } else {
                     Snackbar(snackbarData = snackbarData)
-                }*/
-                Snackbar(
-                    snackbarData = snackbarData,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 10.dp, end = 10.dp, bottom = 50.dp),
-                    shape = MaterialTheme.shapes.large,
-                )
+                }
             }
         }) { padding ->
         AnimatedNavHost(

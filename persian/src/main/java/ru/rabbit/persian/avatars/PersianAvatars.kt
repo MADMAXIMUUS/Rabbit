@@ -33,8 +33,8 @@ object PersianAvatars {
             modifier = modifier
                 .size(size.boxSizes)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.surface)
-                .border(1.dp, MaterialTheme.colorScheme.outlineVariant),
+                .background(MaterialTheme.colorScheme.surface, CircleShape)
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, CircleShape),
             contentAlignment = Alignment.Center
         ) {
             GlideImage(
@@ -89,7 +89,7 @@ object PersianAvatars {
                 .size(size.boxSizes)
                 .clip(MaterialTheme.shapes.large)
                 .background(MaterialTheme.colorScheme.surface)
-                .border(1.dp, MaterialTheme.colorScheme.outlineVariant),
+                .border(3.dp, MaterialTheme.colorScheme.outlineVariant),
             contentAlignment = Alignment.Center
         ) {
             GlideImage(

@@ -56,6 +56,7 @@ import ru.rabbit.persian.components.TProfileTextFieldTrailing
 import ru.rabbit.persian.components.TTopAppBarNavigationOnly
 import ru.rabbit.persian.foundation.PersianTheme
 import ru.rabbit.persian.foundation.icons
+import ru.rabbit.persian.snackbar.PersianSnackbarVisuals
 import java.time.LocalDate
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -76,8 +77,22 @@ internal fun SignUpRoute(
                 is UiAction.ShowSnackbar -> {
                     keyboardController?.hide()
                     snackbarHostState.showSnackbar(
-                        message = event.message.asString(context),
-                        duration = SnackbarDuration.Short
+                        PersianSnackbarVisuals(
+                            message = event.message.asString(context),
+                            duration = SnackbarDuration.Short,
+                            left = {
+                                Icon24(
+                                    icon = MaterialTheme.icons.wifiOff,
+                                    contentDescription = ""
+                                )
+                            },
+                            right = {
+                                Action(
+                                    text = "Action",
+                                    onClick = {}
+                                )
+                            }
+                        )
                     )
                 }
 

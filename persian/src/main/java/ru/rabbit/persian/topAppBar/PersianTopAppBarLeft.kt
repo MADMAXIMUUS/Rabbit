@@ -2,7 +2,7 @@ package ru.rabbit.persian.topAppBar
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import ru.rabbit.persian.avatars.PersianAvatars
 import ru.rabbit.persian.avatars.PersianAvatarsSizes
@@ -15,16 +15,18 @@ object PersianTopAppBarLeft {
 
     @Composable
     fun Navigation(
-        iconTint: Color = MaterialTheme.colorScheme.onSurface,
+        modifier: Modifier = Modifier,
         icon: Painter = MaterialTheme.icons.arrowBack,
         onClick: () -> Unit
     ) {
+        val colors = LocalPersianTopAppBarColors.current
         PersianIconButton.Primary(
+            modifier = modifier,
             icon = icon,
             style = PersianComponentStyle.STANDARD,
             colors = PersianIconButtonColors.primary(
                 style = PersianComponentStyle.STANDARD,
-                containerColor = iconTint
+                containerColor = colors.iconColor
             ),
             onClick = onClick
         )
@@ -32,16 +34,16 @@ object PersianTopAppBarLeft {
 
     @Composable
     fun Close(
-        iconTint: Color = MaterialTheme.colorScheme.onSurface,
         icon: Painter = MaterialTheme.icons.close,
         onClick: () -> Unit
     ) {
+        val colors = LocalPersianTopAppBarColors.current
         PersianIconButton.Primary(
             icon = icon,
             style = PersianComponentStyle.STANDARD,
             colors = PersianIconButtonColors.primary(
                 style = PersianComponentStyle.STANDARD,
-                containerColor = iconTint
+                containerColor = colors.iconColor
             ),
             onClick = onClick
         )

@@ -139,12 +139,12 @@ fun BadgePreview() {
             PersianBadge.Primary(
                 modifier = Modifier,
                 sizes = PersianCounterSizes.medium(
-                    badgeHorizontalOffset = (-20).dp,
-                    badgeVerticalOffset = 25.dp
+                    badgeHorizontalOffset = (-12).dp,
+                    badgeVerticalOffset = 15.dp
                 )
             ) {
                 PersianIconButton.Primary(
-                    icon = MaterialTheme.icons.notifications,
+                    icon = MaterialTheme.icons.share,
                     style = PersianComponentStyle.STANDARD,
                     onClick = {}
                 )

@@ -92,7 +92,8 @@ object PersianSnackbarLeft {
                         bottom = MaterialTheme.spacing.medium
                     ),
                 imageUrl = image,
-                size = PersianAvatarsSizes.medium()
+                size = PersianAvatarsSizes.medium(),
+                onClick = null
             )
         }
     }

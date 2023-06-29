@@ -85,12 +85,6 @@ internal fun SignUpRoute(
                                     icon = MaterialTheme.icons.wifiOff,
                                     contentDescription = ""
                                 )
-                            },
-                            right = {
-                                Action(
-                                    text = "Action",
-                                    onClick = {}
-                                )
                             }
                         )
                     )

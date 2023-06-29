@@ -2,6 +2,7 @@ package ru.rabbit.persian.avatars
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
@@ -27,14 +29,20 @@ object PersianAvatars {
         modifier: Modifier = Modifier,
         imageUrl: String,
         isEdit: Boolean = false,
-        size: AvatarSize = PersianAvatarsSizes.medium()
+        size: AvatarSize = PersianAvatarsSizes.medium(),
+        onClick: (() -> Unit)? = null
     ) {
         Box(
             modifier = modifier
                 .size(size.boxSizes)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.surface, CircleShape)
-                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, CircleShape),
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, CircleShape)
+                .clickable(
+                    enabled = onClick != null,
+                    onClick = { onClick?.invoke() },
+                    role = Role.Image
+                ),
             contentAlignment = Alignment.Center
         ) {
             GlideImage(
@@ -82,14 +90,20 @@ object PersianAvatars {
         modifier: Modifier = Modifier,
         imageUrl: String,
         isEdit: Boolean = false,
-        size: AvatarSize = PersianAvatarsSizes.medium()
+        size: AvatarSize = PersianAvatarsSizes.medium(),
+        onClick: (() -> Unit)? = null
     ) {
         Box(
             modifier = modifier
                 .size(size.boxSizes)
                 .clip(MaterialTheme.shapes.large)
                 .background(MaterialTheme.colorScheme.surface)
-                .border(3.dp, MaterialTheme.colorScheme.outlineVariant),
+                .border(3.dp, MaterialTheme.colorScheme.outlineVariant)
+                .clickable(
+                    enabled = onClick != null,
+                    onClick = { onClick?.invoke() },
+                    role = Role.Image
+                ),
             contentAlignment = Alignment.Center
         ) {
             GlideImage(

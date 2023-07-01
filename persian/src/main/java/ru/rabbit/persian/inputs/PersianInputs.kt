@@ -46,6 +46,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.rabbit.persian.foundation.PersianTheme
+import ru.rabbit.persian.foundation.icons
 import ru.rabbit.persian.foundation.spacing
 
 object PersianInputs {
@@ -201,7 +202,7 @@ object PersianInputs {
                             isError = isError,
                             isSuccess = isSuccess
                         ).value?.let {
-                            Spacer(modifier = Modifier.width(MaterialTheme.spacing.extraSmall))
+                            Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
                             Icon(
                                 modifier = Modifier
                                     .size(24.dp),
@@ -282,6 +283,7 @@ fun DarkInputPreview() {
                 value = "Я введенный текст",
                 isError = true,
                 placeholder = "Я текст",
+                trailingIcon = MaterialTheme.icons.visibility,
                 onValueChange = {}
             )
         }

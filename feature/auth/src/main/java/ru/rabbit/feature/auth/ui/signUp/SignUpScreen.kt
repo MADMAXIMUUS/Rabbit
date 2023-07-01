@@ -53,10 +53,11 @@ import ru.rabbit.core.util.UiAction
 import ru.rabbit.core.util.asString
 import ru.rabbit.persian.components.TButton
 import ru.rabbit.persian.components.TProfileTextFieldTrailing
-import ru.rabbit.persian.components.TTopAppBarNavigationOnly
 import ru.rabbit.persian.foundation.PersianTheme
 import ru.rabbit.persian.foundation.icons
+import ru.rabbit.persian.inputs.PersianInputs
 import ru.rabbit.persian.snackbar.PersianSnackbarVisuals
+import ru.rabbit.persian.topAppBar.PersianTopAppBar
 import java.time.LocalDate
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -159,15 +160,18 @@ internal fun SignUpScreen(
             .navigationBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TTopAppBarNavigationOnly(
-            navigationIcon = MaterialTheme.icons.arrowBack,
-            navigationIconContentDescription = "",
-            title = {
-                Text(text = stringResource(ru.rabbit.feature.auth.R.string.sign_up_main_title))
+        PersianTopAppBar.Primary(
+            left = {
+                Navigation(
+                    onClick = {
+                        navigateUp()
+                    }
+                )
             },
-            onNavigationClick = {
-                navigateUp()
-            }
+            middle = {
+                Title(text = stringResource(ru.rabbit.feature.auth.R.string.sign_up_main_title))
+            },
+            actionsCount = 0
         )
         Spacer(modifier = Modifier.weight(0.1f))
         Icon(
@@ -176,6 +180,14 @@ internal fun SignUpScreen(
             painter = MaterialTheme.icons.appLogo,
             tint = MaterialTheme.colorScheme.primary,
             contentDescription = ""
+        )
+        PersianInputs.Primary(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 40.dp),
+            value = state.emailValue,
+            isError = state.isEmailError,
+            onValueChange = updateEmail
         )
         TProfileTextFieldTrailing(
             modifier = Modifier

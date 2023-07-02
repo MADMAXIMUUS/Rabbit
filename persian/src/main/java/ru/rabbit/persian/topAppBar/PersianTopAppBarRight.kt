@@ -1,5 +1,6 @@
 package ru.rabbit.persian.topAppBar
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -8,6 +9,7 @@ import ru.rabbit.persian.buttons.PersianButton
 import ru.rabbit.persian.counter.PersianBadge
 import ru.rabbit.persian.counter.PersianCounterSizes
 import ru.rabbit.persian.foundation.PersianComponentStyle
+import ru.rabbit.persian.foundation.icons
 import ru.rabbit.persian.iconButtons.PersianIconButton
 import ru.rabbit.persian.iconButtons.PersianIconButtonColors
 
@@ -17,11 +19,10 @@ object PersianTopAppBarRight {
 
     @Composable
     fun Icons(
-        overflowIcon: Painter? = null,
         actions: List<ActionItem>,
     ) {
         val colors = LocalPersianTopAppBarColors.current
-        val showAsActionItems = actions.take(MAX_ACTIONS)
+        val showAsActionItems = actions.take(MAX_ACTIONS - 1)
         val overflowItems = actions.subtract(showAsActionItems.toSet()).toList()
         showAsActionItems.forEach { action ->
             if (action.badgeCount > 0) {
@@ -53,6 +54,10 @@ object PersianTopAppBarRight {
                 )
             }
         }
+        OverflowMenu(
+            actions = overflowItems,
+            overflowIcon = MaterialTheme.icons.moreVert
+        )
     }
 
     @Composable
@@ -73,6 +78,7 @@ object PersianTopAppBarRight {
 
 data class ActionItem(
     val icon: Painter,
+    val title: String,
     val contentDescription: String,
     val badgeCount: Int = 0,
     val onClick: () -> Unit,

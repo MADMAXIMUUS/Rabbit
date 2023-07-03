@@ -10,7 +10,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.TextStyle
-import ru.rabbit.persian.foundation.icons
 
 object PersianMenuItem {
 
@@ -23,20 +22,11 @@ object PersianMenuItem {
         textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
         enabled: Boolean = true,
         isNegative: Boolean = false,
-        leadingIcon: Painter? = null,
-        expandIcon: Painter = MaterialTheme.icons.chevronRight,
+        leadingIcon: Painter,
         interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
     ) {
-        val leftIcon: (@Composable () -> Unit)? = if (leadingIcon == null) null else {
-            run {
-                Icon(
-                    painter = leadingIcon,
-                    contentDescription = "",
-                    tint = colors.leadingIconColor(enabled = enabled, isNegative = isNegative).value
-                )
-            }
-        }
         DropdownMenuItem(
+            enabled = enabled,
             modifier = modifier,
             text = {
                 Text(
@@ -45,7 +35,13 @@ object PersianMenuItem {
                     color = colors.titleColor(enabled = enabled, isNegative = isNegative).value
                 )
             },
-            leadingIcon = leftIcon,
+            leadingIcon = {
+                Icon(
+                    painter = leadingIcon,
+                    contentDescription = "",
+                    tint = colors.leadingIconColor(enabled = enabled, isNegative = isNegative).value
+                )
+            },
             onClick = onItemClick,
             interactionSource = interactionSource
         )

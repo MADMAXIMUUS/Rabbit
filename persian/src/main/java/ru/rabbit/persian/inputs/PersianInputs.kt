@@ -37,11 +37,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -73,10 +73,8 @@ object PersianInputs {
         onTrailingIconClick: (() -> Unit)? = null
     ) {
         val isFocused = interactionSource.collectIsFocusedAsState().value
-        val textColor = textStyle.color.takeOrElse {
-            colors.textColor(enabled, isError, isSuccess, interactionSource).value
-        }
-        val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
+        val textColor = colors.textColor(enabled, isSuccess, isError, interactionSource).value
+        val mergedTextStyle = textStyle.merge(TextStyle(color = textColor, baselineShift = BaselineShift.Superscript))
 
         val borderThickness = if (enabled && (isFocused || isError || isSuccess)) 2.dp else 1.dp
         val borderColor = colors.indicatorColor(
@@ -157,6 +155,8 @@ object PersianInputs {
                                         isError = isError,
                                         interactionSource = interactionSource
                                     ).value,
+                                    style = MaterialTheme.typography.bodyLarge
+                                        .copy(baselineShift = BaselineShift.Superscript)
                                 )
                             }
                             innerTextField()
@@ -175,6 +175,8 @@ object PersianInputs {
                                         isError = isError,
                                         interactionSource = interactionSource
                                     ).value,
+                                    style = MaterialTheme.typography.bodyLarge
+                                        .copy(baselineShift = BaselineShift.Superscript)
                                 )
                             }
                         }
@@ -263,8 +265,8 @@ fun InputPreview() {
             PersianInputs.Primary(
                 modifier = Modifier
                     .padding(10.dp),
-                value = "Я введенный текст",
-                isError = true,
+                value = "",
+                isSuccess = true,
                 placeholder = "Я текст",
                 onValueChange = {}
             )
@@ -281,7 +283,7 @@ fun DarkInputPreview() {
                 modifier = Modifier
                     .padding(10.dp),
                 value = "Я введенный текст",
-                isError = true,
+                isSuccess = true,
                 placeholder = "Я текст",
                 trailingIcon = MaterialTheme.icons.visibility,
                 onValueChange = {}

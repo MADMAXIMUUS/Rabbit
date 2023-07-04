@@ -54,6 +54,7 @@ internal fun OverflowMenu(
                         it.onClick()
                         expanded.value = false
                     },
+                    leadingIcon = it.icon
                 )
             }
         }

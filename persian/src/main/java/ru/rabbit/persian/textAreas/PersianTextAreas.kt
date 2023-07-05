@@ -57,7 +57,7 @@ object PersianTextAreas {
         readOnly: Boolean = false,
         textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
         placeholder: String? = null,
-        colors: InputColors = PersianInputColors.primary(),
+        colors: TextAreaColors = PersianTextAreaColors.primary(),
         leadingIcon: Painter? = null,
         keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
         keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -186,7 +186,7 @@ private fun animateBorderStrokeAsState(
     isError: Boolean,
     isSuccess: Boolean,
     interactionSource: InteractionSource,
-    colors: InputColors,
+    colors: TextAreaColors,
     focusedBorderThickness: Dp,
     unfocusedBorderThickness: Dp
 ): State<BorderStroke> {

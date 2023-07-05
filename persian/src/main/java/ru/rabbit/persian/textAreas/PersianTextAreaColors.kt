@@ -18,7 +18,7 @@ import ru.rabbit.persian.foundation.PersianStatesDisabled
 import ru.rabbit.persian.foundation.icons
 
 @Immutable
-class InputColors internal constructor(
+class TextAreaColors internal constructor(
 
     //State Icon
     private val errorStateIcon: Painter,
@@ -216,7 +216,7 @@ class InputColors internal constructor(
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other == null || other !is InputColors) return false
+        if (other == null || other !is TextAreaColors) return false
 
         if (focusedTextColor != other.focusedTextColor) return false
         if (unfocusedTextColor != other.unfocusedTextColor) return false
@@ -276,7 +276,7 @@ class InputColors internal constructor(
     }
 }
 
-object PersianInputColors {
+object PersianTextAreaColors {
 
     @Composable
     fun primary(
@@ -336,8 +336,8 @@ object PersianInputColors {
         disabledPlaceholderColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = PersianContentStateDisabled),
         errorPlaceholderColor: Color = MaterialTheme.colorScheme.error,
-    ): InputColors =
-        InputColors(
+    ): TextAreaColors =
+        TextAreaColors(
             //State Icon
             errorStateIcon = errorStateIcon,
             successStateIcon = successStateIcon,

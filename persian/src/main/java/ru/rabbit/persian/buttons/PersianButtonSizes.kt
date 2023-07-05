@@ -21,16 +21,16 @@ data class ButtonSizes(
 object PersianButtonSizes {
 
     @Composable
-    fun large(
+    fun small(
         loading: Boolean = false,
-        fontSize: TextStyle = MaterialTheme.typography.titleMedium,
-        height: Dp = 52.dp,
-        minWidth: Dp = 112.dp,
-        iconSize: Dp = 24.dp,
+        fontSize: TextStyle = MaterialTheme.typography.titleSmall,
+        height: Dp = 36.dp,
+        minWidth: Dp = 90.dp,
+        iconSize: Dp = 18.dp,
         contentPadding: PaddingValues = if (loading) PaddingValues(
-            horizontal = 24.dp,
+            horizontal = 16.dp,
             vertical = 4.dp
-        ) else PaddingValues(horizontal = 24.dp, vertical = 16.dp)
+        ) else PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     ): ButtonSizes = remember(
         fontSize,
         height,
@@ -55,9 +55,9 @@ object PersianButtonSizes {
         minWidth: Dp = 98.dp,
         iconSize: Dp = 20.dp,
         contentPadding: PaddingValues = if (loading) PaddingValues(
-        horizontal = 20.dp,
-        vertical = 4.dp
-    ) else PaddingValues(horizontal = 20.dp, vertical = 12.dp)
+            horizontal = 20.dp,
+            vertical = 4.dp
+        ) else PaddingValues(horizontal = 20.dp, vertical = 12.dp)
     ): ButtonSizes = remember(
         fontSize,
         height,
@@ -75,16 +75,16 @@ object PersianButtonSizes {
     }
 
     @Composable
-    fun small(
+    fun large(
         loading: Boolean = false,
-        fontSize: TextStyle = MaterialTheme.typography.titleSmall,
-        height: Dp = 36.dp,
-        minWidth: Dp = 90.dp,
-        iconSize: Dp = 18.dp,
+        fontSize: TextStyle = MaterialTheme.typography.titleMedium,
+        height: Dp = 52.dp,
+        minWidth: Dp = 112.dp,
+        iconSize: Dp = 24.dp,
         contentPadding: PaddingValues = if (loading) PaddingValues(
-            horizontal = 16.dp,
+            horizontal = 24.dp,
             vertical = 4.dp
-        ) else PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+        ) else PaddingValues(horizontal = 24.dp, vertical = 16.dp)
     ): ButtonSizes = remember(
         fontSize,
         height,

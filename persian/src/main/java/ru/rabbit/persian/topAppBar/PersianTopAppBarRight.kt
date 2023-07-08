@@ -20,7 +20,7 @@ object PersianTopAppBarRight {
     @Composable
     fun Icons(
         actions: List<ActionItem>,
-    ) {
+    ): Int {
         val colors = LocalPersianTopAppBarColors.current
         val showAsActionItems = actions.take(MAX_ACTIONS - 1)
         val overflowItems = actions.subtract(showAsActionItems.toSet()).toList()
@@ -58,6 +58,7 @@ object PersianTopAppBarRight {
             actions = overflowItems,
             overflowIcon = MaterialTheme.icons.moreVert
         )
+        return showAsActionItems.size+1
     }
 
     @Composable
@@ -65,13 +66,14 @@ object PersianTopAppBarRight {
         modifier: Modifier = Modifier,
         text: String,
         onClick: () -> Unit
-    ) {
+    ): Int {
         PersianButton.Primary(
             modifier = modifier,
             text = text,
             onClick = onClick,
             style = PersianComponentStyle.STANDARD
         )
+        return 1
     }
 
 }

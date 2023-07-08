@@ -20,13 +20,13 @@ object PersianTopAppBar {
         windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
         left: (@Composable PersianTopAppBarLeft.() -> Unit)? = null,
         middle: @Composable PersianTopAppBarMiddle.() -> Unit,
-        right: (@Composable PersianTopAppBarRight.() -> Unit)? = null,
-        scrollBehavior: TopAppBarScrollBehavior? = null,
-        actionsCount: Int,
+        right: (@Composable PersianTopAppBarRight.() -> Int)? = null,
+        scrollBehavior: TopAppBarScrollBehavior? = null
     ) {
+        val actionItemsCount = right?.let { PersianTopAppBarRight.it() } ?: 0
         CompositionLocalProvider(LocalPersianTopAppBarColors provides topAppBarColors) {
             val colors = LocalPersianTopAppBarColors.current
-            if (actionsCount < 2) {
+            if (actionItemsCount < 2) {
                 CenterAlignedTopAppBar(
                     modifier = modifier,
                     title = {

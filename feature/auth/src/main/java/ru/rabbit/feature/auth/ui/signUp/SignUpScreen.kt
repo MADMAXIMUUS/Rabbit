@@ -170,8 +170,7 @@ internal fun SignUpScreen(
             },
             middle = {
                 Title(text = stringResource(ru.rabbit.feature.auth.R.string.sign_up_main_title))
-            },
-            actionsCount = 0
+            }
         )
         Spacer(modifier = Modifier.weight(0.1f))
         Icon(

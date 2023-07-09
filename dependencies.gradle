@@ -1,19 +1,19 @@
 ext.versions = [
-        navigation : "2.5.3",
+        navigation : "2.6.0",
         compose    : '1.4.3',
-        composeTest: "1.4.2",
-        dialogs    : "1.1.1",
+        composeTest: "1.5.0-beta02",
+        dialogs    : "1.2.0",
         lifecycle  : "2.6.1"
 ]
 
 ext.libs = [
-        coreKtx                       : "androidx.core:core-ktx:1.10.0",
+        coreKtx                       : "androidx.core:core-ktx:1.12.0-alpha05",
         lifecycleRuntimeKtx           : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}",
         lifecycleRuntimeCompose       : "androidx.lifecycle:lifecycle-runtime-compose:${versions.lifecycle}",
         lifecycleCompose              : "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.lifecycle}",
         viewModelSavedState           : "androidx.lifecycle:lifecycle-viewmodel-savedstate:${versions.lifecycle}",
         activityCompose               : "androidx.activity:activity-compose:1.7.2",
-        material3                     : "androidx.compose.material3:material3:1.1.0-rc01",
+        material3                     : "androidx.compose.material3:material3:1.2.0-alpha02",
 
         //Compose
         composeFoundation             : "androidx.compose.foundation:foundation:${versions.compose}",
@@ -33,7 +33,7 @@ ext.libs = [
         //DataStore
         datastore                     : "androidx.datastore:datastore-preferences:1.0.0",
         collectionImmutable           : "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5",
-        serialization                 : "org.jetbrains.kotlin:kotlin-serialization:1.8.21",
+        serialization                 : "org.jetbrains.kotlin:kotlin-serialization:1.9.0",
 
         //Glide
         glide                         : "com.github.bumptech.glide:compose:1.0.0-alpha.3",
@@ -42,8 +42,8 @@ ext.libs = [
         splash                        : "androidx.core:core-splashscreen:1.0.1",
 
         //Dagger - Hilt
-        hilt                          : "com.google.dagger:hilt-android:2.46",
-        hiltAndroidCompiler           : "com.google.dagger:hilt-android-compiler:2.46",
+        hilt                          : "com.google.dagger:hilt-android:2.46.1",
+        hiltAndroidCompiler           : "com.google.dagger:hilt-android-compiler:2.46.1",
         hiltCompiler                  : "androidx.hilt:hilt-compiler:1.0.0",
         hiltNavigation                : "androidx.hilt:hilt-navigation-compose:1.0.0",
 
@@ -59,7 +59,7 @@ ext.libs = [
 
         //Retrofit
         retrofit                      : "com.squareup.retrofit2:retrofit:2.9.0",
-        okhttp                        : "com.squareup.okhttp3:okhttp:4.11.0",
+        okhttp                        : "com.squareup.okhttp3:okhttp:5.0.0-alpha.11",
         retrofitConverter             : "com.squareup.retrofit2:converter-gson:2.9.0",
         logging                       : "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2",
 ]

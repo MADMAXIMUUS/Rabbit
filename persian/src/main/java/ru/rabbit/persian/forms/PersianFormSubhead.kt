@@ -22,7 +22,7 @@ object PersianFormSubhead {
         required: Boolean = false,
         text: String,
         textColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
-        textStyle: TextStyle = MaterialTheme.typography.labelSmall
+        textStyle: TextStyle = MaterialTheme.typography.labelMedium
     ) {
         Row(
             modifier = modifier,
@@ -52,7 +52,7 @@ object PersianFormSubhead {
         counter: Int,
         counterMax: Int,
         textColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
-        textStyle: TextStyle = MaterialTheme.typography.labelSmall
+        textStyle: TextStyle = MaterialTheme.typography.labelMedium
     ) {
         Row(
             modifier = modifier,

@@ -11,12 +11,14 @@ object PersianCheckboxToggle {
     fun Primary(
         modifier: Modifier = Modifier,
         checked: Boolean,
+        enabled: Boolean = true,
         onCheckedChange: ((Boolean) -> Unit)?,
         colors: CheckboxColors = PersianCheckboxToggleColors.primary(),
     ) {
         Checkbox(
             modifier = modifier,
             checked = checked,
+            enabled = enabled,
             onCheckedChange = onCheckedChange,
             colors = colors
         )

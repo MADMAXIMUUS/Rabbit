@@ -96,9 +96,9 @@ object PersianAvatars {
         Box(
             modifier = modifier
                 .size(size.boxSizes)
-                .clip(MaterialTheme.shapes.large)
-                .background(MaterialTheme.colorScheme.surface, MaterialTheme.shapes.large)
-                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, MaterialTheme.shapes.large)
+                .clip(size.cornerShape)
+                .background(MaterialTheme.colorScheme.surface, size.cornerShape)
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, size.cornerShape)
                 .clickable(
                     enabled = onClick != null,
                     onClick = { onClick?.invoke() },

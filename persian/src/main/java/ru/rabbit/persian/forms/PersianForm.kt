@@ -19,17 +19,19 @@ object PersianForm {
     fun Primary(
         modifier: Modifier = Modifier,
         enabled: Boolean = true,
-        subhead: @Composable PersianFormSubhead.() -> Unit,
+        subhead: (@Composable PersianFormSubhead.() -> Unit)? = null,
         content: @Composable PersianFormContent.() -> Unit,
         caption: String? = null,
-        captionTextStyle: TextStyle = MaterialTheme.typography.bodySmall,
+        captionTextStyle: TextStyle = MaterialTheme.typography.bodyMedium,
         captionColor: Color = MaterialTheme.colorScheme.onSurfaceVariant
     ) {
         Column(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.extraExtraSmall)
         ) {
-            PersianFormSubhead.subhead()
+            if (subhead != null) {
+                PersianFormSubhead.subhead()
+            }
             PersianFormContent.content()
             Text(
                 text = caption ?: "",

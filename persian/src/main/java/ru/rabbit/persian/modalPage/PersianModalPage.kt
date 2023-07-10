@@ -1,22 +1,28 @@
 package ru.rabbit.persian.modalPage
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SheetState
-import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.window.DialogWindowProvider
 import ru.rabbit.persian.topAppBar.PersianTopAppBar
 
 object PersianModalPage {
@@ -35,34 +41,50 @@ object PersianModalPage {
         title: String,
         actionTitle: String,
         onActionClick: () -> Unit,
-        content: @Composable ColumnScope.() -> Unit
+        content: @Composable BoxScope.() -> Unit
     ) {
         ModalBottomSheet(
-            modifier = modifier,
+            modifier = modifier
+                .statusBarsPadding(),
             onDismissRequest = onDismissRequest,
             containerColor = backgroundColor,
             sheetState = sheetState,
             tonalElevation = 0.dp,
             shape = shape,
             dragHandle = null,
+            windowInsets = WindowInsets(0, 0, 0, 0),
             content = {
-                PersianTopAppBar.Primary(
-                    left = {
-                        Close(
-                            onClick = {
-                                onDismissRequest()
-                            }
+                Scaffold(
+                    modifier = Modifier.fillMaxWidth(),
+                    topBar = {
+                        PersianTopAppBar.Primary(
+                            left = {
+                                Close(
+                                    onClick = {
+                                        onDismissRequest()
+                                    }
+                                )
+                            },
+                            middle = {
+                                Title(text = title)
+                            },
+                            right = {
+                                Button(
+                                    text = actionTitle, onClick = onActionClick
+                                )
+                            },
                         )
-                    },
-                    middle = {
-                        Title(text = title)
-                    },
-                    right = {
-                        Button(text = actionTitle, onClick = onActionClick)
-                    },
-                    actionsCount = 1
-                )
-                content()
+                    }
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(it)
+                    )
+                    {
+                        content()
+                    }
+                }
             }
         )
     }
@@ -83,61 +105,22 @@ object PersianModalPage {
         title: String,
         actionTitle: String,
         onActionClick: () -> Unit,
-        content: @Composable ColumnScope.() -> Unit
+        content: @Composable BoxScope.() -> Unit
     ) {
         ModalBottomSheet(
-            modifier = modifier,
+            modifier = modifier
+                .statusBarsPadding(),
             onDismissRequest = onDismissRequest,
             containerColor = backgroundColor,
             sheetState = sheetState,
             tonalElevation = 0.dp,
             shape = shape,
             dragHandle = null,
+            windowInsets = WindowInsets(0, 0, 0, 0),
             content = {
-                PersianTopAppBar.Primary(
-                    left = {
-                        Close(
-                            onClick = {
-                                onDismissRequest()
-                            }
-                        )
-                    },
-                    middle = {
-                        Title(text = title)
-                    },
-                    right = {
-                        Button(text = actionTitle, onClick = onActionClick)
-                    },
-                    actionsCount = 1
-                )
-                content()
-            }
-        )
-    }
-
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun FullScreen(
-        onDismissRequest: () -> Unit,
-        title: String,
-        actionTitle: String,
-        onActionClick: () -> Unit,
-        content: @Composable () -> Unit
-    ) {
-        Dialog(
-            onDismissRequest = onDismissRequest,
-            properties = DialogProperties(
-                decorFitsSystemWindows = false,
-                usePlatformDefaultWidth = false
-            ),
-            content = {
-                Surface(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    tonalElevation = 0.dp,
-                    shadowElevation = 0.dp
-                ) {
-                    Column(modifier = Modifier.fillMaxSize()) {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = {
                         PersianTopAppBar.Primary(
                             left = {
                                 Close(
@@ -150,14 +133,75 @@ object PersianModalPage {
                                 Title(text = title)
                             },
                             right = {
-                                Button(text = actionTitle, onClick = onActionClick)
+                                Button(
+                                    text = actionTitle, onClick = onActionClick
+                                )
                             },
-                            actionsCount = 1
                         )
+                    }
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(it)
+                    )
+                    {
                         content()
                     }
                 }
+            }
+        )
+    }
 
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun FullScreen(
+        onDismissRequest: () -> Unit,
+        title: String,
+        actionTitle: String,
+        onActionClick: () -> Unit,
+        content: @Composable BoxScope.() -> Unit
+    ) {
+        Dialog(
+            onDismissRequest = onDismissRequest,
+            properties = DialogProperties(
+                decorFitsSystemWindows = false,
+                usePlatformDefaultWidth = false
+            ),
+            content = {
+                val dialogWindowProvider = (LocalView.current.parent as DialogWindowProvider)
+                dialogWindowProvider.window.setDimAmount(0f)
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = {
+                        PersianTopAppBar.Primary(
+                            left = {
+                                Close(
+                                    onClick = {
+                                        onDismissRequest()
+                                    }
+                                )
+                            },
+                            middle = {
+                                Title(text = title)
+                            },
+                            right = {
+                                Button(
+                                    text = actionTitle, onClick = onActionClick
+                                )
+                            },
+                        )
+                    }
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(it)
+                    )
+                    {
+                        content()
+                    }
+                }
             }
         )
     }

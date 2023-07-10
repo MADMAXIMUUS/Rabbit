@@ -1,5 +1,6 @@
 package ru.rabbit.persian.navigationBar
 
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -29,12 +30,14 @@ object PersianNavigationBar {
     fun Primary(
         actions: List<NavigationBarItem>,
         modifier: Modifier = Modifier,
+        windowInsets: WindowInsets = WindowInsets(0,0,0,0),
         colors: NavigationBarColors = PersianNavigationBarColors.primary(),
         sizes: NavigationBarSizes = PersianNavigationBarSizes.primary()
     ) {
         NavigationBar(
             modifier = modifier,
             containerColor = colors.backgroundColor,
+            windowInsets = windowInsets,
             tonalElevation = MaterialTheme.elevation.small,
         ) {
             actions.forEach { item ->

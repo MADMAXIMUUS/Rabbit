@@ -2,9 +2,10 @@ package ru.rabbit.persian.radioButtons
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -28,12 +29,12 @@ object PersianRadioButton {
     ) {
         Row(
             modifier = modifier
-                .padding(radioButtonSizes.contentPadding)
-                .toggleable(
-                    value = checked,
-                    onValueChange = { onCheckedChange(!checked) },
+                .selectable(
+                    selected = checked,
+                    onClick = { onCheckedChange(!checked) },
                     role = Role.RadioButton
-                ),
+                )
+                .padding(radioButtonSizes.contentPadding),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
@@ -45,6 +46,7 @@ object PersianRadioButton {
                 colors = radioButtonColors.toggleColor
             )
             Text(
+                modifier = Modifier.weight(1f),
                 text = text,
                 color = radioButtonColors.textColor,
                 style = radioButtonSizes.textStyle
@@ -59,6 +61,7 @@ fun CheckboxPreview() {
     MaterialTheme {
         Surface {
             PersianRadioButton.Primary(
+                modifier=Modifier.fillMaxWidth(),
                 text = "Radio Button",
                 checked = false,
                 onCheckedChange = {}

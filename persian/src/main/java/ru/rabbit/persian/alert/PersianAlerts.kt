@@ -43,7 +43,8 @@ object PersianAlerts {
                 Surface(
                     modifier = modifier
                         .fillMaxWidth()
-                        .wrapContentHeight(),
+                        .wrapContentHeight()
+                        .padding(horizontal = MaterialTheme.spacing.extraExtraLarge),
                     shape = MaterialTheme.shapes.extraLarge,
                     color = colors.backgroundColor,
                     tonalElevation = MaterialTheme.elevation.small,
@@ -92,7 +93,8 @@ object PersianAlerts {
                 Surface(
                     modifier = modifier
                         .fillMaxWidth()
-                        .wrapContentHeight(),
+                        .wrapContentHeight()
+                        .padding(horizontal = MaterialTheme.spacing.extraExtraLarge),
                     shape = MaterialTheme.shapes.extraLarge,
                     color = colors.backgroundColor,
                     tonalElevation = MaterialTheme.elevation.small,
@@ -116,6 +118,7 @@ object PersianAlerts {
                                             top = MaterialTheme.spacing.extraExtraLarge,
                                             bottom = MaterialTheme.spacing.extraSmall
                                         ),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
                                     verticalArrangement = Arrangement
                                         .spacedBy(MaterialTheme.spacing.large),
                                 ) {
@@ -141,7 +144,7 @@ object PersianAlerts {
                                         )
                                     }
                                 }
-                                PersianHorizontalDividers.Inset()
+                                if (content != null) PersianHorizontalDividers.Inset()
                                 content?.invoke()
                                 Row(
                                     modifier = Modifier

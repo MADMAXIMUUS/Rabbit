@@ -1,13 +1,13 @@
 package ru.rabbit.persian.banners
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -40,8 +40,10 @@ object PersianBanner {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(sizes.contentPadding),
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(sizes.contentPadding)
+                    .height(sizes.iconSize),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
             ) {
                 icon?.let {
                     Icon(
@@ -52,9 +54,13 @@ object PersianBanner {
                         tint = colors.iconColor
                     )
                 }
-                Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
-                Text(modifier = Modifier.fillMaxWidth(),
-                    text = text, style = sizes.textStyle, color = colors.textColor)
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    text = text,
+                    style = sizes.textStyle,
+                    color = colors.textColor,
+                )
             }
         }
     }

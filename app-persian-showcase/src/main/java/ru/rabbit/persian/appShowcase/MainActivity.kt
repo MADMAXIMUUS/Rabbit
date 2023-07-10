@@ -3,44 +3,104 @@ package ru.rabbit.persian.appShowcase
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import ru.rabbit.persian.appShowcase.screens.ActionSheet
+import ru.rabbit.persian.appShowcase.screens.Alert
+import ru.rabbit.persian.appShowcase.screens.Avatar
+import ru.rabbit.persian.appShowcase.screens.Banner
+import ru.rabbit.persian.appShowcase.screens.Button
+import ru.rabbit.persian.appShowcase.screens.CheckBox
+import ru.rabbit.persian.appShowcase.screens.Counter
+import ru.rabbit.persian.appShowcase.screens.Divider
+import ru.rabbit.persian.appShowcase.screens.Fab
+import ru.rabbit.persian.appShowcase.screens.Forms
+import ru.rabbit.persian.appShowcase.screens.IconButton
+import ru.rabbit.persian.appShowcase.screens.Inputs
+import ru.rabbit.persian.appShowcase.screens.ModalPage
+import ru.rabbit.persian.appShowcase.screens.NavigationBar
 import ru.rabbit.persian.foundation.PersianTheme
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalLayoutApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             PersianTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                val systemUiController = rememberSystemUiController()
+                val isDarkTheme = isSystemInDarkTheme()
+                DisposableEffect(systemUiController, isDarkTheme) {
+                    systemUiController.setSystemBarsColor(
+                        color = Color.Transparent,
+                        darkIcons = !isDarkTheme
+                    )
+                    systemUiController.setNavigationBarColor(
+                        color = Color.Transparent,
+                        darkIcons = !isDarkTheme
+                    )
+                    onDispose {}
+                }
+                val navController = rememberNavController()
+                val screens = remember {
+                    arrayListOf(
+                        ActionSheet,
+                        Alert,
+                        Button,
+                        Avatar,
+                        Banner,
+                        CheckBox,
+                        Counter,
+                        Divider,
+                        Fab,
+                        Forms,
+                        IconButton,
+                        Inputs,
+                        ModalPage,
+                        NavigationBar
+                    )
+                }
+                NavHost(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(PaddingValues(0.dp))
+                        .consumeWindowInsets(PaddingValues(0.dp))
+                        .windowInsetsPadding(
+                            WindowInsets.safeDrawing.only(
+                                WindowInsetsSides.Horizontal,
+                            ),
+                        ),
+                    navController = navController, startDestination = "dashboard"
                 ) {
-                    Greeting("Android")
+                    composable("dashboard") { _ ->
+                        DashboardScreen(navController, screens.sortedBy { it.name })
+                    }
+                    screens.forEach { screen ->
+                        composable(screen.navigation) { screen.Content(navController) }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PersianTheme {
-        Greeting("Android")
     }
 }

@@ -23,8 +23,10 @@ object PersianToggleIconButtonColors {
     fun primary(
         style: PersianComponentStyle,
         containerColor: Color = MaterialTheme.colorScheme.surfaceVariant,
+        tonalContainerColor: Color = MaterialTheme.colorScheme.primaryContainer,
         checkedContainerColor: Color = MaterialTheme.colorScheme.primary,
         contentColor: Color = MaterialTheme.colorScheme.primary,
+        tonalContentColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
         checkedContentColor: Color = MaterialTheme.colorScheme.onPrimary,
         disabledContainerColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(PersianStatesDisabled),
@@ -37,7 +39,7 @@ object PersianToggleIconButtonColors {
         checkedContentColor,
         disabledContainerColor,
         disabledContentColor
-    ){
+    ) {
         when (style) {
             PersianComponentStyle.FILL -> IconButtonColors(
                 containerColor = containerColor,
@@ -52,7 +54,7 @@ object PersianToggleIconButtonColors {
                 containerColor = Color.Transparent,
                 checkedContainerColor = checkedContainerColor,
                 contentColor = contentColor,
-                checkedContentColor = checkedContainerColor,
+                checkedContentColor = checkedContentColor,
                 disabledContainerColor = disabledContainerColor,
                 disabledContentColor = disabledContentColor
             )
@@ -65,10 +67,11 @@ object PersianToggleIconButtonColors {
                 disabledContainerColor = disabledContainerColor,
                 disabledContentColor = disabledContentColor
             )
+
             PersianComponentStyle.TONAL -> IconButtonColors(
-                containerColor = containerColor,
+                containerColor = tonalContainerColor,
                 checkedContainerColor = checkedContainerColor,
-                contentColor = contentColor,
+                contentColor = tonalContentColor,
                 checkedContentColor = checkedContentColor,
                 disabledContainerColor = disabledContainerColor,
                 disabledContentColor = disabledContentColor

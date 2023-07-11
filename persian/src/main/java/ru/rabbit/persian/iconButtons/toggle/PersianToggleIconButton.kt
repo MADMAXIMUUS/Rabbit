@@ -137,7 +137,9 @@ private fun PersianOutlinedToggleIconButtonImpl(
             containerColor = colors.containerColor,
             contentColor = colors.contentColor,
             disabledContentColor = colors.disabledContentColor,
-            disabledContainerColor = colors.disabledContainerColor
+            disabledContainerColor = colors.disabledContainerColor,
+            checkedContainerColor = colors.checkedContainerColor,
+            checkedContentColor = colors.checkedContentColor
         ),
         shape = sizes.cornerRadius,
         border = BorderStroke(1.dp, colors.contentColor),

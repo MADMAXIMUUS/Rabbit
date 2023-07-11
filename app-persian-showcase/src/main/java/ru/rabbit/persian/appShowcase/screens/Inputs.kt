@@ -237,7 +237,7 @@ object Inputs : Screen {
                     }
                 }
                 item {
-                    SampleRow(text = "Input Placeholder Disabled + Suffix") {
+                    SampleRow(text = "Input Placeholder Disabled + Suffix", lastItem = true) {
                         PersianInputs.Primary(
                             value = "Some input",
                             onValueChange = {},

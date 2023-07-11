@@ -33,7 +33,6 @@ fun DashboardScreen(
     navController: NavHostController,
     screens: List<Screen>
 ) {
-
     val topAppBarScrollBehavior =
         TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     SampleScaffold(title = "Persian", topAppBarScrollBehavior = topAppBarScrollBehavior) {

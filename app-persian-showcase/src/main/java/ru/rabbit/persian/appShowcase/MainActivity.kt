@@ -38,6 +38,13 @@ import ru.rabbit.persian.appShowcase.screens.IconButton
 import ru.rabbit.persian.appShowcase.screens.Inputs
 import ru.rabbit.persian.appShowcase.screens.ModalPage
 import ru.rabbit.persian.appShowcase.screens.NavigationBar
+import ru.rabbit.persian.appShowcase.screens.ProgressBar
+import ru.rabbit.persian.appShowcase.screens.RadioButton
+import ru.rabbit.persian.appShowcase.screens.Search
+import ru.rabbit.persian.appShowcase.screens.Snackbar
+import ru.rabbit.persian.appShowcase.screens.Tabs
+import ru.rabbit.persian.appShowcase.screens.TextArea
+import ru.rabbit.persian.appShowcase.screens.TopAppBar
 import ru.rabbit.persian.foundation.PersianTheme
 
 class MainActivity : ComponentActivity() {
@@ -78,7 +85,14 @@ class MainActivity : ComponentActivity() {
                         IconButton,
                         Inputs,
                         ModalPage,
-                        NavigationBar
+                        NavigationBar,
+                        ProgressBar,
+                        RadioButton,
+                        Search,
+                        Snackbar,
+                        Tabs,
+                        TextArea,
+                        TopAppBar
                     )
                 }
                 NavHost(

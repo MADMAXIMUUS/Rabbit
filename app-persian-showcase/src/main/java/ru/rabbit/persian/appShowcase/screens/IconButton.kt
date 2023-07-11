@@ -33,7 +33,7 @@ object IconButton : Screen {
                 contentPadding = it
             ) {
                 item {
-                    SampleRow(text = "Icon Button") {
+                    SampleRow(text = "Icon Button", firstItem = true) {
                         PersianIconButton.Primary(
                             icon = MaterialTheme.icons.favoriteOutlined,
                             style = PersianComponentStyle.FILL,
@@ -58,7 +58,7 @@ object IconButton : Screen {
                 }
                 item {
                     val (checked, onCheckedChange) = remember { mutableStateOf(false) }
-                    SampleRow(text = "Toggleable Icon Button") {
+                    SampleRow(text = "Toggleable Icon Button", lastItem = true) {
                         ru.rabbit.persian.iconButtons.toggle.PersianIconButton.Primary(
                             icon = MaterialTheme.icons.favoriteOutlined,
                             style = PersianComponentStyle.FILL,

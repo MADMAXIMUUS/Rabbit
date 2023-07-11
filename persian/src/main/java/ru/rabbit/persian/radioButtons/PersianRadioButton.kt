@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
+import ru.rabbit.persian.foundation.PersianContentStateDisabled
 import ru.rabbit.persian.radioButtons.toggle.PersianRadioButtonToggle
 
 object PersianRadioButton {
@@ -23,13 +24,17 @@ object PersianRadioButton {
         modifier: Modifier = Modifier,
         text: String,
         checked: Boolean,
+        enabled: Boolean = true,
         onCheckedChange: (Boolean) -> Unit,
         radioButtonColors: RadioButtonColors = PersianRadioButtonColors.primary(),
         radioButtonSizes: RadioButtonSizes = PersianRadioButtonSizes.small()
     ) {
+        val textColor = if (enabled) radioButtonColors.textColor
+        else MaterialTheme.colorScheme.onSurface.copy(alpha = PersianContentStateDisabled)
         Row(
             modifier = modifier
                 .selectable(
+                    enabled = enabled,
                     selected = checked,
                     onClick = { onCheckedChange(!checked) },
                     role = Role.RadioButton
@@ -42,13 +47,14 @@ object PersianRadioButton {
                 modifier = Modifier
                     .size(radioButtonSizes.toggleSize),
                 checked = checked,
+                enabled = enabled,
                 onClick = null,
                 colors = radioButtonColors.toggleColor
             )
             Text(
                 modifier = Modifier.weight(1f),
                 text = text,
-                color = radioButtonColors.textColor,
+                color = textColor,
                 style = radioButtonSizes.textStyle
             )
         }
@@ -61,7 +67,7 @@ fun CheckboxPreview() {
     MaterialTheme {
         Surface {
             PersianRadioButton.Primary(
-                modifier=Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 text = "Radio Button",
                 checked = false,
                 onCheckedChange = {}

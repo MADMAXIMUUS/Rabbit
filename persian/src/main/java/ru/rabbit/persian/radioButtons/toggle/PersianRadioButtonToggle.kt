@@ -11,11 +11,13 @@ object PersianRadioButtonToggle {
     fun Primary(
         modifier: Modifier = Modifier,
         checked: Boolean,
+        enabled: Boolean = true,
         onClick: (() -> Unit)?,
         colors: RadioButtonColors = PersianRadioButtonToggleColors.primary(),
     ) {
         RadioButton(
             modifier = modifier,
+            enabled = enabled,
             selected = checked,
             onClick = onClick,
             colors = colors

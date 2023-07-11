@@ -73,6 +73,7 @@ object PersianModalPage {
                                     text = actionTitle, onClick = onActionClick
                                 )
                             },
+                            actionItemsCount = 1
                         )
                     }
                 ) {
@@ -137,6 +138,7 @@ object PersianModalPage {
                                     text = actionTitle, onClick = onActionClick
                                 )
                             },
+                            actionItemsCount = 1
                         )
                     }
                 ) {
@@ -190,6 +192,7 @@ object PersianModalPage {
                                     text = actionTitle, onClick = onActionClick
                                 )
                             },
+                            actionItemsCount = 1
                         )
                     }
                 ) {

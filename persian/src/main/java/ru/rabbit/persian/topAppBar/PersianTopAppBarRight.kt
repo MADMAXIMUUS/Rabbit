@@ -2,6 +2,9 @@ package ru.rabbit.persian.topAppBar
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
@@ -20,9 +23,11 @@ object PersianTopAppBarRight {
     @Composable
     fun Icons(
         actions: List<ActionItem>,
-    ): Int {
+        expanded: MutableState<Boolean> = remember { mutableStateOf(false) }
+    ) {
         val colors = LocalPersianTopAppBarColors.current
-        val showAsActionItems = actions.take(MAX_ACTIONS - 1)
+        val showAsActionItemsCount = if (actions.size > MAX_ACTIONS) MAX_ACTIONS -1 else MAX_ACTIONS
+        val showAsActionItems = actions.take(showAsActionItemsCount)
         val overflowItems = actions.subtract(showAsActionItems.toSet()).toList()
         showAsActionItems.forEach { action ->
             if (action.badgeCount > 0) {
@@ -54,11 +59,13 @@ object PersianTopAppBarRight {
                 )
             }
         }
-        OverflowMenu(
-            actions = overflowItems,
-            overflowIcon = MaterialTheme.icons.moreVert
-        )
-        return showAsActionItems.size+1
+        if (overflowItems.isNotEmpty()) {
+            OverflowMenu(
+                actions = overflowItems,
+                expanded = expanded,
+                overflowIcon = MaterialTheme.icons.moreVert
+            )
+        }
     }
 
     @Composable
@@ -66,14 +73,13 @@ object PersianTopAppBarRight {
         modifier: Modifier = Modifier,
         text: String,
         onClick: () -> Unit
-    ): Int {
+    ) {
         PersianButton.Primary(
             modifier = modifier,
             text = text,
             onClick = onClick,
             style = PersianComponentStyle.STANDARD
         )
-        return 1
     }
 
 }

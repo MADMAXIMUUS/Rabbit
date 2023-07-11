@@ -29,7 +29,7 @@ internal fun OverflowMenu(
         expanded = expanded,
         modifier = modifier,
         interactionSource = interactionSource,
-        offset = DpOffset(-(MaterialTheme.spacing.small), MaterialTheme.spacing.medium),
+        offset = DpOffset(MaterialTheme.spacing.medium, MaterialTheme.spacing.small),
         onDismissRequest = {
             onDismissRequest?.let { it() }
         },
